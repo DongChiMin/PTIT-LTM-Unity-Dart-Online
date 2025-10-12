@@ -13,7 +13,7 @@ public class MessageRouter : Singleton<MessageRouter>
         switch (response)
         {
             case "response_login":
-                loginHandler.Handle(json);
+                loginHandler.Handle(msg);
                 break;
             case "response_register":
                 break;
