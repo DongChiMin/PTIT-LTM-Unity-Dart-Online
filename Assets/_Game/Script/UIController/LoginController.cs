@@ -8,16 +8,6 @@ public class LoginController : MonoBehaviour
 {
     [SerializeField] TMP_InputField usernameInput;
     [SerializeField] TMP_InputField passwordInput;
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void LoginExecute()
     {

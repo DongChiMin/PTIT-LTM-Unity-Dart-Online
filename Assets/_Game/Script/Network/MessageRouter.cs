@@ -1,19 +1,19 @@
 ﻿using System;
 using UnityEngine;
-
+using SimpleJSON;
 public class MessageRouter : Singleton<MessageRouter>
 {
     private LoginHandler loginHandler = new LoginHandler();
 
     public void Route(string msg)
     {
-        ResponseData responseData = JsonUtility.FromJson<ResponseData>(msg);
-        string response = responseData.response;
+        var json = JSON.Parse(msg);
+        string response = json["response"];
 
         switch (response)
         {
             case "response_login":
-                loginHandler.Handle(responseData);
+                loginHandler.Handle(json);
                 break;
             case "response_register":
                 break;

@@ -152,6 +152,9 @@ public class ServerConnection : Singleton<ServerConnection>
 
         if (stream != null) stream.Close();
         if (tcpClient != null) tcpClient.Close();
+
+        PlayerPrefs.DeleteAll();
+        PlayerPrefs.Save();
     }
 
 }
