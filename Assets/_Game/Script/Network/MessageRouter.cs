@@ -32,10 +32,17 @@ public class MessageRouter : Singleton<MessageRouter>
             case "response_invite_response":
                 inviteResponseHandler.Handle(json);
                 break;
-            case "response_match_start":
+            case "response_round_start":
+                //{ "response":"response_round_start","status":"SUCCESS","data":{ "matchId":3,"round":1,"firstTurnId":3,"firstTurnName":"nguyet"} }
                 roundStartHandler.Handle(json);
                 break;
-            case "response_throw_dart":
+            case "response_throw_force":
+                //{ "response":"response_throw_force","status":"SUCCESS","data":{ "matchId":1,"round":1,"playerId":2,"playerName":"hoang","force":0.0} }
+                
+                break;
+            case "response_throw_score":
+                //{ "response":"response_throw_score","status":"SUCCESS","data":{ "matchId":1,"round":1,"playerId":2,"playerName":"hoang","score":3,"totalScoreP1":3,"totalScoreP2":0,"timeout":false} }
+                
                 break;
             case "response_round_result":
                 break;

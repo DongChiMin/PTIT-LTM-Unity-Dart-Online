@@ -50,4 +50,9 @@ public class RoundController : Singleton<RoundController>
         //Sau khi gửi lực thì sẽ có kết quả điểm và gửi điểm
         SetFields(false, true);
     }
+
+    public void OnClickEnd()
+    {
+
+    }
 }
