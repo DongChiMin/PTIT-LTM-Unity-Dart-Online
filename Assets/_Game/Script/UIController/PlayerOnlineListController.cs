@@ -41,6 +41,7 @@ public class PlayerOnlineListController : Singleton<PlayerOnlineListController>
         PacketSender.SendPacket(packet, stream);
 
         //Vào màn hình chơi
+        UIManager.Instance.Show(UIPaneltype.playingDemo);
     }
 
     public void onClickDecline()

@@ -13,7 +13,8 @@ public enum UIPaneltype
     waitingInvite,
     inviteTimeout,
     inviteFailed,
-    waitingAccept
+    waitingAccept,
+    playingDemo
 }
 
 public class UIManager : Singleton<UIManager>

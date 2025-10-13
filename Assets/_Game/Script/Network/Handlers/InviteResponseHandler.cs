@@ -15,14 +15,23 @@ public class InviteResponseHandler
         switch (status)
         {
             case "SUCCESS":
-                UIManager.Instance.Show(UIPaneltype.inviteFailed);
+                
 
                 //Lấy data từ JSON
                 string statusData = jsonData["data"]["status"].Value;
                 string playerName = jsonData["data"]["fromUsername"].Value;
 
                 //Set thông tin người chơi nào đã từ chối
-                PlayerOnlineListController.Instance.SetInviteFailedText(playerName + " declined!");
+                if(statusData == "ACCEPT")
+                {
+                    UIManager.Instance.Show(UIPaneltype.playingDemo);
+                }
+                else
+                {
+                    UIManager.Instance.Show(UIPaneltype.inviteFailed);
+                    PlayerOnlineListController.Instance.SetInviteFailedText(playerName + " declined!");
+                }
+                    
 
                 break;
             case "FAIL":
