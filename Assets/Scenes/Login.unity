@@ -303,9 +303,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1922064996}
-        m_TargetAssemblyTypeName: LoginController, Assembly-CSharp
-        m_MethodName: OnClickLogin
+      - m_Target: {fileID: 278827943}
+        m_TargetAssemblyTypeName: RoundController, Assembly-CSharp
+        m_MethodName: OnClickSendScore
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -13875,9 +13875,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1922064996}
-        m_TargetAssemblyTypeName: LoginController, Assembly-CSharp
-        m_MethodName: OnClickLogin
+      - m_Target: {fileID: 278827943}
+        m_TargetAssemblyTypeName: RoundController, Assembly-CSharp
+        m_MethodName: OnClickSendForce
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
