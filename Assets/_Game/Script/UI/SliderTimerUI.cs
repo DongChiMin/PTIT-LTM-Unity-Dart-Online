@@ -37,7 +37,7 @@ public class SliderTimerUI : MonoBehaviour
             isRunning = false;
             // Gọi callback hoặc sự kiện khi hoàn tất nếu cần
             UIManager.Instance.Hide(UIPaneltype.waitingInvite);
-            UIManager.Instance.Show(UIPaneltype.inviteFailed);
+            UIManager.Instance.Show(UIPaneltype.inviteTimeout);
         }
     }
 }

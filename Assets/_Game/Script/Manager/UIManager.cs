@@ -11,6 +11,7 @@ public enum UIPaneltype
     mainMenu,
     playerOnlineList,
     waitingInvite,
+    inviteTimeout,
     inviteFailed,
     waitingAccept
 }

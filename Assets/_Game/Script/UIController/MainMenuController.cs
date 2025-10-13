@@ -17,7 +17,7 @@ public class MainMenuController : Singleton<MainMenuController>
     public void onClickPlay() {
         UIManager.Instance.ShowOnly(UIPaneltype.playerOnlineList);
 
-        //Gửi lệnh logout về server
+        //Gửi lệnh lấy danh sách người choi online
         GetOnlineUsersPacket packet = new GetOnlineUsersPacket();
         NetworkStream stream = ServerConnection.Instance.GetStream();
         PacketSender.SendPacket(packet, stream);

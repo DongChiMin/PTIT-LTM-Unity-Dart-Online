@@ -11,6 +11,7 @@ public class PlayerOnlineListController : Singleton<PlayerOnlineListController>
 
     [SerializeField] TextMeshProUGUI waitingInviteText;
     [SerializeField] TextMeshProUGUI waitingAcceptText;
+    [SerializeField] TextMeshProUGUI inviteFailedText;
 
     [SerializeField] SliderTimerUI sliderTimer;
     private int inviteFromId = -1;
@@ -84,6 +85,11 @@ public class PlayerOnlineListController : Singleton<PlayerOnlineListController>
     public void SetWaitingAcceptText(string msg)
     {
         waitingAcceptText.text = msg;
+    }
+
+    public void SetInviteFailedText(string msg)
+    {
+        inviteFailedText.text = msg;
     }
 
     public void SetInviteFromId (int newId)
