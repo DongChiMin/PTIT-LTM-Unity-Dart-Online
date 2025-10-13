@@ -46,5 +46,8 @@ public class RoundController : Singleton<RoundController>
         ThrowForcePacket packet = new ThrowForcePacket(matchId, float.Parse(forceInput.text));
         NetworkStream stream = ServerConnection.Instance.GetStream();
         PacketSender.SendPacket(packet, stream);
+
+        //Sau khi gửi lực thì sẽ có kết quả điểm và gửi điểm
+        SetFields(false, true);
     }
 }

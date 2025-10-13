@@ -20,16 +20,16 @@ public class RoundStartHandler
                 int matchId = jsonData["data"]["matchId"];
                 int round = jsonData["data"]["round"];
                 int firstTurnId = jsonData["data"]["firstTurnId"];
-                string firstTurnName = jsonData["data"]["firstTurnName"];
+                string firstTurnName = jsonData["data"]["firstTurnName"].Value;
 
                 //Nếu người chơi không phải là người ném
                 if(PlayerPrefs.GetInt("user_id") != firstTurnId)
                 {
-                    RoundController.Instance.SetFields(true, false);
+                    RoundController.Instance.SetFields(false, false);
                 }
                 else
                 {
-                    RoundController.Instance.SetFields(false, false);
+                    RoundController.Instance.SetFields(true, false);
                 }
                 RoundController.Instance.SetRoundText(matchId, firstTurnName, round);
 
