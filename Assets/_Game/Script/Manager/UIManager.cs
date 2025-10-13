@@ -9,7 +9,10 @@ public enum UIPaneltype
     login,
     loginFailed,
     mainMenu,
-    playerOnlineList
+    playerOnlineList,
+    waitingInvite,
+    inviteFailed,
+    waitingAccept
 }
 
 public class UIManager : Singleton<UIManager>

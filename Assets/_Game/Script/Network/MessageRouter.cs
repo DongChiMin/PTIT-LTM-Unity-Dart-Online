@@ -4,6 +4,7 @@ using SimpleJSON;
 public class MessageRouter : Singleton<MessageRouter>
 {
     private LoginHandler loginHandler = new LoginHandler();
+    private OnlineUsersHandler onlineUsersHandler = new OnlineUsersHandler();
 
     public void Route(string msg)
     {
@@ -16,10 +17,11 @@ public class MessageRouter : Singleton<MessageRouter>
                 loginHandler.Handle(json);
                 break;
             case "response_register":
+                
                 break;
 
             case "response_online_users":
-
+                onlineUsersHandler.Handle(json);
                 break;
             case "response_invite":
                 break;

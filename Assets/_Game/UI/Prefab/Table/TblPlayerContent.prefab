@@ -635,7 +635,7 @@ MonoBehaviour:
   index: {fileID: 7504536948586254837}
   playerName: {fileID: 5170001730296708996}
   status: {fileID: 3694429920737119088}
-  inviteButton: {fileID: 6058039620996272286}
+  inviteButton: {fileID: 5951879339964832755}
 --- !u!1 &6058039620996272286
 GameObject:
   m_ObjectHideFlags: 0

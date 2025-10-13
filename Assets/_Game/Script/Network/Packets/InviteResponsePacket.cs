@@ -1,7 +1,7 @@
 ﻿[System.Serializable]
 public class InviteResponseData
 {
-    public string inviter;
+    public int inviterId;
     public string response;  // "ACCEPT" hoặc "DECLINE"
 }
 
@@ -10,12 +10,12 @@ public class InviteResponsePacket : BasePacket
 {
     public InviteResponseData data;
 
-    public InviteResponsePacket(string inviter, string response)
+    public InviteResponsePacket(int inviterId, string response)
     {
         action = "invite_response";
         data = new InviteResponseData
         {
-            inviter = inviter,
+            inviterId = inviterId,
             response = response
         };
     }

@@ -16,14 +16,15 @@ public class OnlineUsersHandler
         switch (status)
         {
             case "SUCCESS":
+                PlayerOnlineListController.Instance.ResetOnlineUsersList();
                 JSONArray users = jsonData["data"]["users"].AsArray;
-
+                Debug.Log(users);
                 for (int i = 0; i < users.Count; i++)
                 {
                     string playerName = users[i]["playerName"];
                     string userStatus = users[i]["status"];
-
-                    PlayerOnlineListController.Instance.SetOnlineUsersList(i.ToString(), playerName, userStatus);
+                    string index = (i + 1).ToString();
+                    PlayerOnlineListController.Instance.SetOnlineUsersList(users[i]["id"], index, playerName, userStatus);
                 }
                 break;
             case "FAIL":
