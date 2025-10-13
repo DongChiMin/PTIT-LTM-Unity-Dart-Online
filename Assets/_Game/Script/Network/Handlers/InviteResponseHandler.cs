@@ -24,7 +24,7 @@ public class InviteResponseHandler
                 //Set thông tin người chơi nào đã từ chối
                 if(statusData == "ACCEPT")
                 {
-                    UIManager.Instance.Show(UIPaneltype.playingDemo);
+                    UIManager.Instance.ShowOnly(UIPaneltype.playingDemo);
                 }
                 else
                 {
