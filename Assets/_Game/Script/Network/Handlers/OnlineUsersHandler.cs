@@ -18,7 +18,6 @@ public class OnlineUsersHandler
             case "SUCCESS":
                 PlayerOnlineListController.Instance.ResetOnlineUsersList();
                 JSONArray users = jsonData["data"]["users"].AsArray;
-                Debug.Log(users);
                 for (int i = 0; i < users.Count; i++)
                 {
                     string playerName = users[i]["playerName"];

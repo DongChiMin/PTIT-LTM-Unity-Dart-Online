@@ -1014,7 +1014,7 @@ RectTransform:
   m_Father: {fileID: 1006275991}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3569,7 +3569,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &625435246
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8704,7 +8704,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 196872167}
   m_HandleRect: {fileID: 0}
@@ -10626,7 +10626,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 749859299}
   m_HandleRect: {fileID: 0}
@@ -12407,16 +12407,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1844902146}
+      objectReference: {fileID: 671419539}
     - target: {fileID: 4757897395103345251, guid: 4eac95e4bd2e83d45b8a24be9fd65f9c,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: onClickPlay
+      value: onClickAccept
       objectReference: {fileID: 0}
     - target: {fileID: 4757897395103345251, guid: 4eac95e4bd2e83d45b8a24be9fd65f9c,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: MainMenuController, Assembly-CSharp
+      value: PlayerOnlineListController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5469154187192197773, guid: 4eac95e4bd2e83d45b8a24be9fd65f9c,
         type: 3}
