@@ -37,12 +37,12 @@ public class MessageRouter : Singleton<MessageRouter>
                 roundStartHandler.Handle(json);
                 break;
             case "response_throw_force":
-                //{ "response":"response_throw_force","status":"SUCCESS","data":{ "matchId":1,"round":1,"playerId":2,"playerName":"hoang","force":0.0} }
-                
+                //{ "response":"response_throw_force","status":"SUCCESS","data":{ "matchId":1,"round":1,"playerId":2,"playerName":"hoang","force":0.0,"timeout":false} }
+                roundStartHandler.HandleThrowForce(json);
                 break;
             case "response_throw_score":
-                //{ "response":"response_throw_score","status":"SUCCESS","data":{ "matchId":1,"round":1,"playerId":2,"playerName":"hoang","score":3,"totalScoreP1":3,"totalScoreP2":0,"timeout":false} }
-                
+                //{ "response":"response_throw_score","status":"SUCCESS","data":{ "matchId":4,"round":1,"playerId":2,"playerName":"hoang","score":34,"totalScoreP1":34,"totalScoreP2":0,"timeout":false} }
+                roundStartHandler.HandleRoundScore(json);
                 break;
             case "response_round_result":
                 break;

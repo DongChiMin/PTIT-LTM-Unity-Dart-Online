@@ -14,8 +14,6 @@ public class RoundStartHandler
         string status = jsonData["status"].Value;
         switch (status)
         {
-            
-
             case "SUCCESS":
                 int matchId = jsonData["data"]["matchId"];
                 int round = jsonData["data"]["round"];
@@ -41,27 +39,15 @@ public class RoundStartHandler
         }
     }
 
+    //{ "response":"response_throw_force","status":"SUCCESS","data":{ "matchId":1,"round":1,"playerId":2,"playerName":"hoang","force":0.0,"timeout":false} }
     public void HandleThrowForce(SimpleJSON.JSONNode jsonData)
     {
         string status = jsonData["status"].Value;
         switch (status)
         {
             case "SUCCESS":
-                int matchId = jsonData["data"]["matchId"];
-                int round = jsonData["data"]["round"];
-                int firstTurnId = jsonData["data"]["firstTurnId"];
-                string firstTurnName = jsonData["data"]["firstTurnName"].Value;
-
-                if (PlayerPrefs.GetInt("user_id") != firstTurnId)
-                {
-                    RoundController.Instance.SetFields(false, false);
-                }
-                else
-                {
-                    RoundController.Instance.SetFields(true, false);
-                }
-                RoundController.Instance.SetRoundText(matchId, firstTurnName, round);
-
+                float force = jsonData["data"]["force"];
+                RoundController.Instance.SetOpponentForceReceived(force);
                 break;
             case "FAIL":
 
@@ -72,33 +58,17 @@ public class RoundStartHandler
         }
     }
 
-    public void HandleThrowScore(SimpleJSON.JSONNode jsonData)
+    //{ "response":"response_throw_score","status":"SUCCESS","data":{ "matchId":4,"round":1,"playerId":2,"playerName":"hoang","score":34,"totalScoreP1":34,"totalScoreP2":0,"timeout":false} }
+    public void HandleRoundScore(SimpleJSON.JSONNode jsonData)
     {
         string status = jsonData["status"].Value;
         switch (status)
         {
 
-
             case "SUCCESS":
-                int matchId = jsonData["data"]["matchId"];
-                int round = jsonData["data"]["round"];
-                int firstTurnId = jsonData["data"]["firstTurnId"];
-                string firstTurnName = jsonData["data"]["firstTurnName"].Value;
-
-                Debug.Log("DATA" + jsonData);
-                //Nếu người chơi không phải là người ném
-                Debug.Log("ID CỦA NGƯỜI CHƠI HIỆN TẠI" + PlayerPrefs.GetInt("user_id"));
-                Debug.Log("ID CỦA NGƯỜI ĐƯỢC NÉM TRƯỚC" + firstTurnId);
-                if (PlayerPrefs.GetInt("user_id") != firstTurnId)
-                {
-                    RoundController.Instance.SetFields(false, false);
-                }
-                else
-                {
-                    RoundController.Instance.SetFields(true, false);
-                }
-                RoundController.Instance.SetRoundText(matchId, firstTurnName, round);
-
+                int yourScore = jsonData["data"]["totalScoreP1"];
+                int opponentScore = jsonData["data"]["totalScoreP2"];
+                RoundController.Instance.SetScore(yourScore, opponentScore);
                 break;
             case "FAIL":
 

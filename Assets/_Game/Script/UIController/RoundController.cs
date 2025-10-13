@@ -16,6 +16,10 @@ public class RoundController : Singleton<RoundController>
     [SerializeField] Button sendScore;
     [SerializeField] Button sendForce;
 
+    [SerializeField] TextMeshProUGUI opponentForceReceived;
+    [SerializeField] TextMeshProUGUI yourScore;
+    [SerializeField] TextMeshProUGUI opponentScore;
+
     private int matchId;
 
     public void SetRoundText(int matchId, string playerNameTurn, int round)
@@ -34,11 +38,25 @@ public class RoundController : Singleton<RoundController>
         sendScore.interactable = scoreField;
     }
 
+    public void SetOpponentForceReceived(float force)
+    {
+        opponentForceReceived.text = "Lực ném của đối thủ nhận được: " + force.ToString();
+    }
+
+    public void SetScore(int yourScore, int opponentScore)
+    {
+        this.yourScore.text = "Điểm của bạn: " + (int.Parse(this.yourScore.text) + yourScore).ToString();
+        this.opponentScore.text = "Điểm của đối thủ: " + (int.Parse(this.opponentScore.text) + opponentScore).ToString();
+    }
+
     public void OnClickSendScore()
     {
         ThrowScorePacket packet = new ThrowScorePacket(matchId, int.Parse(scoreInput.text));
         NetworkStream stream = ServerConnection.Instance.GetStream();
         PacketSender.SendPacket(packet, stream);
+
+        //sau khi gửi điểm xong thì đến lượt đối thủ
+        SetFields(false, false);
     }
 
     public void OnClickSendForce()
