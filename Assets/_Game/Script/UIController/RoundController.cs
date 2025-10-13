@@ -8,6 +8,8 @@ using UnityEngine.UI;
 
 public class RoundController : Singleton<RoundController>
 {
+
+
     [SerializeField] TextMeshProUGUI playerNameTurn;
     [SerializeField] TextMeshProUGUI round;
 
@@ -20,6 +22,7 @@ public class RoundController : Singleton<RoundController>
     [SerializeField] TextMeshProUGUI yourScore;
     [SerializeField] TextMeshProUGUI opponentScore;
 
+    private string playerP;
     private int matchId;
 
     public void SetRoundText(int matchId, string playerNameTurn, int round)
@@ -43,10 +46,23 @@ public class RoundController : Singleton<RoundController>
         opponentForceReceived.text = "Lực ném của đối thủ nhận được: " + force.ToString();
     }
 
-    public void SetScore(int yourScore, int opponentScore)
+    public void SetScore(int p1Score, int p2Score)
     {
-        this.yourScore.text = "Điểm của bạn: " + (int.Parse(this.yourScore.text) + yourScore).ToString();
-        this.opponentScore.text = "Điểm của đối thủ: " + (int.Parse(this.opponentScore.text) + opponentScore).ToString();
+        int yourScore;
+        int opponentScore;
+        if (playerP == "P1")
+        {
+            yourScore = p1Score;
+            opponentScore = p2Score;
+        }
+        else
+        {
+            yourScore= p2Score;
+            opponentScore = p1Score;
+        }
+
+        this.yourScore.text = "Điểm của bạn: " + yourScore.ToString();
+        this.opponentScore.text = "Điểm của đối thủ: " + opponentScore.ToString();
     }
 
     public void OnClickSendScore()
@@ -72,5 +88,10 @@ public class RoundController : Singleton<RoundController>
     public void OnClickEnd()
     {
 
+    }
+
+    public void SetPlayerP(string playerP)
+    {
+        this.playerP = playerP;
     }
 }

@@ -42,6 +42,7 @@ public class PlayerOnlineListController : Singleton<PlayerOnlineListController>
 
         //Vào màn hình chơi
         UIManager.Instance.ShowOnly(UIPaneltype.playingDemo);
+        RoundController.Instance.SetPlayerP("P2");
     }
 
     public void onClickDecline()

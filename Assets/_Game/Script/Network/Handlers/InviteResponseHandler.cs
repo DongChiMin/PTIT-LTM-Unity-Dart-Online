@@ -25,6 +25,7 @@ public class InviteResponseHandler
                 if(statusData == "ACCEPT")
                 {
                     UIManager.Instance.ShowOnly(UIPaneltype.playingDemo);
+                    RoundController.Instance.SetPlayerP("P1");
                 }
                 else
                 {

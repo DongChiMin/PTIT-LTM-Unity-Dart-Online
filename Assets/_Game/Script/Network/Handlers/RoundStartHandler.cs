@@ -19,6 +19,8 @@ public class RoundStartHandler
                 int round = jsonData["data"]["round"];
                 int firstTurnId = jsonData["data"]["firstTurnId"];
                 string firstTurnName = jsonData["data"]["firstTurnName"].Value;
+
+                //Nếu không phải là người ném trước
                 if (PlayerPrefs.GetInt("user_id") != firstTurnId)
                 {
                     RoundController.Instance.SetFields(false, false);

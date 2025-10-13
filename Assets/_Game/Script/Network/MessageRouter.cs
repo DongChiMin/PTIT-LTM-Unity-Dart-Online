@@ -41,8 +41,14 @@ public class MessageRouter : Singleton<MessageRouter>
                 roundStartHandler.HandleThrowForce(json);
                 break;
             case "response_throw_score":
+                //P1 la người mời 
                 //{ "response":"response_throw_score","status":"SUCCESS","data":{ "matchId":4,"round":1,"playerId":2,"playerName":"hoang","score":34,"totalScoreP1":34,"totalScoreP2":0,"timeout":false} }
                 roundStartHandler.HandleRoundScore(json);
+                break;
+            case "round_end":
+                //{ "response":"round_end","status":"SUCCESS","data":{ "matchId":2,"round":5,"totalScoreP1":170,"totalScoreP2":50} }
+                //{ "response":"response_match_end","status":"SUCCESS","data":{ "matchId":2,"p1":"hoang","p2":"nguyet","scoreP1":170,"scoreP2":50,"winner":"hoang"} }
+
                 break;
             case "response_round_result":
                 break;
