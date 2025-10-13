@@ -27,7 +27,7 @@ public class InviteHandler
 
                 break;
             case "FAIL":
-                UIManager.Instance.Show(UIPaneltype.loginFailed);
+                
                 break;
             default:
                 Debug.Log("Lỗi status của dữ liệu:" + jsonData);

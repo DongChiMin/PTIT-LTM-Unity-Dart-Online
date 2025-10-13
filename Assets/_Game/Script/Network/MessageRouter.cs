@@ -6,6 +6,7 @@ public class MessageRouter : Singleton<MessageRouter>
     private LoginHandler loginHandler = new LoginHandler();
     private OnlineUsersHandler onlineUsersHandler = new OnlineUsersHandler();
     private InviteHandler inviteHandler = new InviteHandler();
+    private InviteResponseHandler inviteResponseHandler = new InviteResponseHandler();
 
     public void Route(string msg)
     {
@@ -28,7 +29,7 @@ public class MessageRouter : Singleton<MessageRouter>
                 inviteHandler.Handle(json);
                 break;
             case "response_invite_response":
-
+                inviteResponseHandler.Handle(json);
                 break;
             case "response_match_start":
                 break;
