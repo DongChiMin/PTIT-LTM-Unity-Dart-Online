@@ -1,5 +1,6 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using System.Net.Sockets;
 using TMPro;
 using UnityEngine;
 
@@ -7,9 +8,24 @@ public class MainMenuController : Singleton<MainMenuController>
 {
     [SerializeField] TextMeshProUGUI welcomeTMP;
 
-    public void setWelcomeTMP(string playerName)
+    public void SetWelcomeTMP(string playerName)
     {
         welcomeTMP.text = "Welcome back, " + playerName + "!";
+    }
+
+    
+    public void onClickPlay() {
+        UIManager.Instance.ShowOnly(UIPaneltype.playerOnlineList);
+
+        //Gửi lệnh logout về server
+        GetOnlineUsersPacket packet = new GetOnlineUsersPacket();
+        NetworkStream stream = ServerConnection.Instance.GetStream();
+        PacketSender.SendPacket(packet, stream);
+    }
+
+    public void onClickRanking()
+    {
+
     }
 
     public void onClickExit()
@@ -17,10 +33,18 @@ public class MainMenuController : Singleton<MainMenuController>
         Application.Quit();
     }
 
-    public void onClickLogout()
+    public void OnClickLogout()
     {
         PlayerPrefs.DeleteAll();
         PlayerPrefs.Save();
-        UIManager.Instance.ShowOnly(UIPaneltype.login);
+        UIManager.Instance.ShowOnly(UIPaneltype.login);     
+
+        //Gửi lệnh logout về server
+        LogoutPacket packet = new LogoutPacket();
+        NetworkStream stream = ServerConnection.Instance.GetStream();
+        PacketSender.SendPacket(packet, stream);
+
+        //Kết nối lại
+        ServerConnection.Instance.StartConnect();
     }
 }

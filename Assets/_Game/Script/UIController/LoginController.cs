@@ -9,19 +9,19 @@ public class LoginController : MonoBehaviour
     [SerializeField] TMP_InputField usernameInput;
     [SerializeField] TMP_InputField passwordInput;
 
-    public void LoginExecute()
+    public void OnClickLogin()
     {
         LoginPacket login = new LoginPacket(usernameInput.text, passwordInput.text);
         NetworkStream stream = ServerConnection.Instance.GetStream();
         PacketSender.SendPacket(login, stream);
     }
 
-    public void TryAgain()
+    public void OnClickTryAgain()
     {
         UIManager.Instance.ShowOnly(UIPaneltype.login);
     }
 
-    public void ChangeToRegisterUI()
+    public void OnClickRegister()
     {
         UIManager.Instance.ShowOnly(UIPaneltype.register);
     }

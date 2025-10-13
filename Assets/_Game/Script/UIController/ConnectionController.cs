@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ConnectionController : MonoBehaviour
 {
-    public void TryAgainExecute()
+    public void OnClickTryAgain()
     {
         ServerConnection.Instance.StartConnect();
     }

@@ -8,7 +8,8 @@ public enum UIPaneltype
     register,
     login,
     loginFailed,
-    mainMenu
+    mainMenu,
+    playerOnlineList
 }
 
 public class UIManager : Singleton<UIManager>

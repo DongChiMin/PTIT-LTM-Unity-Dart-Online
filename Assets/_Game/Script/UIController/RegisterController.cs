@@ -10,14 +10,14 @@ public class RegisterController : MonoBehaviour
     [SerializeField] TMP_InputField passwordInput;
     [SerializeField] TMP_InputField playerName;
 
-    public void RegisterExecute()
+    public void OnClickRegister()
     {
         RegisterPacket packet = new RegisterPacket(usernameInput.text, passwordInput.text, playerName.text);
         NetworkStream stream = ServerConnection.Instance.GetStream();
         PacketSender.SendPacket(packet, stream);
     }
 
-    public void ChangeToLoginUI()
+    public void OnClickBack()
     {
         UIManager.Instance.ShowOnly(UIPaneltype.login);
     }

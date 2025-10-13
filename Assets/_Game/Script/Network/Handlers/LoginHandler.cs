@@ -11,7 +11,7 @@ public class LoginHandler
 
     public void Handle(SimpleJSON.JSONNode jsonData)
     {
-        string status = jsonData["status"];
+        string status = jsonData["status"].Value;
         switch (status)
         {
             case "SUCCESS":
@@ -20,8 +20,8 @@ public class LoginHandler
 
                 //Lấy data từ JSON
                 int playerId = jsonData["data"]["id"];
-                string username = jsonData["data"]["username"];
-                string playerName = jsonData["data"]["playerName"];
+                string username = jsonData["data"]["username"].Value;
+                string playerName = jsonData["data"]["playerName"].Value;
 
                 //Lưu thông tin người chơi vào PlayerPref
                 PlayerPrefs.SetInt("user_id", playerId);
@@ -29,7 +29,7 @@ public class LoginHandler
                 PlayerPrefs.SetString("user_playerName", playerName);
                 PlayerPrefs.Save();
 
-                MainMenuController.Instance.setWelcomeTMP(playerName);
+                MainMenuController.Instance.SetWelcomeTMP(playerName);
                 break;
             case "FAIL":
                 UIManager.Instance.Show(UIPaneltype.loginFailed);

@@ -7,18 +7,19 @@ public class MessageRouter : Singleton<MessageRouter>
 
     public void Route(string msg)
     {
-        var json = JSON.Parse(msg);
+        var json = JSON.Parse(msg.Trim());
         string response = json["response"];
 
         switch (response)
         {
             case "response_login":
-                loginHandler.Handle(msg);
+                loginHandler.Handle(json);
                 break;
             case "response_register":
                 break;
 
             case "response_online_users":
+
                 break;
             case "response_invite":
                 break;
