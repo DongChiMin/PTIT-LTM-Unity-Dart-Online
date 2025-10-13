@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Net.Sockets;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,25 +16,35 @@ public class RoundController : Singleton<RoundController>
     [SerializeField] Button sendScore;
     [SerializeField] Button sendForce;
 
-    public void SetRoundText(string playerNameTurn, string round)
+    private int matchId;
+
+    public void SetRoundText(int matchId, string playerNameTurn, int round)
     {
-        this.round.text = "Vòng đấu: " + round;
+        this.matchId = matchId;
+        this.round.text = "Vòng đấu: " + round.ToString();
         this.playerNameTurn.text = "lượt của: " + playerNameTurn;
     }
 
-    public void DisableInteract()
+    public void SetFields(bool forceField, bool scoreField)
     {
-        scoreInput.interactable = false;
-        forceInput.interactable = false;
-        sendScore.interactable = false;
-        sendForce.interactable = false;
+        forceInput.interactable = forceField;
+        sendForce.interactable = forceField;
+
+        scoreInput.interactable = scoreField;
+        sendScore.interactable = scoreField;
     }
 
-    public void EnableInteract()
+    public void OnClickSendScore()
     {
-        scoreInput.interactable = true;
-        forceInput.interactable = true;
-        sendScore.interactable = true;
-        sendForce.interactable = true;
+        ThrowScorePacket packet = new ThrowScorePacket(matchId, int.Parse(scoreInput.text));
+        NetworkStream stream = ServerConnection.Instance.GetStream();
+        PacketSender.SendPacket(packet, stream);
+    }
+
+    public void OnClickSendForce()
+    {
+        ThrowForcePacket packet = new ThrowForcePacket(matchId, float.Parse(forceInput.text));
+        NetworkStream stream = ServerConnection.Instance.GetStream();
+        PacketSender.SendPacket(packet, stream);
     }
 }

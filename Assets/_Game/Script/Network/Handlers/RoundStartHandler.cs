@@ -14,7 +14,10 @@ public class RoundStartHandler
         string status = jsonData["status"].Value;
         switch (status)
         {
+            
+
             case "SUCCESS":
+                int matchId = jsonData["data"]["matchId"];
                 int round = jsonData["data"]["round"];
                 int firstTurnId = jsonData["data"]["firstTurnId"];
                 string firstTurnName = jsonData["data"]["firstTurnName"];
@@ -22,13 +25,13 @@ public class RoundStartHandler
                 //Nếu người chơi không phải là người ném
                 if(PlayerPrefs.GetInt("user_id") != firstTurnId)
                 {
-                    RoundController.Instance.DisableInteract();
+                    RoundController.Instance.SetFields(true, false);
                 }
                 else
                 {
-                    RoundController.Instance.EnableInteract();
+                    RoundController.Instance.SetFields(false, false);
                 }
-                RoundController.Instance.SetRoundText(firstTurnName, round.ToString());
+                RoundController.Instance.SetRoundText(matchId, firstTurnName, round);
 
                 break;
             case "FAIL":
