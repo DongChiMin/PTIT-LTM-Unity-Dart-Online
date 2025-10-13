@@ -8,7 +8,7 @@ public class MessageRouter : Singleton<MessageRouter>
     private InviteHandler inviteHandler = new InviteHandler();
     private InviteResponseHandler inviteResponseHandler = new InviteResponseHandler();
     private RoundStartHandler roundStartHandler = new RoundStartHandler();
-
+    private MatchEndHandler matchEndHandler = new MatchEndHandler();
     public void Route(string msg)
     {
         var json = JSON.Parse(msg.Trim());
@@ -47,12 +47,14 @@ public class MessageRouter : Singleton<MessageRouter>
                 break;
             case "round_end":
                 //{ "response":"round_end","status":"SUCCESS","data":{ "matchId":2,"round":5,"totalScoreP1":170,"totalScoreP2":50} }
-                //{ "response":"response_match_end","status":"SUCCESS","data":{ "matchId":2,"p1":"hoang","p2":"nguyet","scoreP1":170,"scoreP2":50,"winner":"hoang"} }
+                
 
                 break;
             case "response_round_result":
                 break;
-            case "response_match_detail":
+            case "response_match_end":
+                //{ "response":"response_match_end","status":"SUCCESS","data":{ "matchId":2,"p1":"hoang","p2":"nguyet","scoreP1":170,"scoreP2":50,"winner":"hoang"} }
+                matchEndHandler.Handle(json);
                 break;
             case "response_exit_match":
                 break;

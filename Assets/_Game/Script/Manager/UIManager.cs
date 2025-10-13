@@ -14,7 +14,10 @@ public enum UIPaneltype
     inviteTimeout,
     inviteFailed,
     waitingAccept,
-    playingDemo
+    playingDemo,
+    matchEnd,
+    playerDetail,
+    ranking
 }
 
 public class UIManager : Singleton<UIManager>
