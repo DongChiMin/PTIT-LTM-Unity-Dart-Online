@@ -20,5 +20,6 @@ public class RegisterController : MonoBehaviour
     public void OnClickBack()
     {
         UIManager.Instance.ShowOnly(UIPaneltype.login);
+        LoginController.Instance.ResetInput();
     }
 }

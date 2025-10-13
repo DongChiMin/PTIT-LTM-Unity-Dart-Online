@@ -37,7 +37,8 @@ public class MainMenuController : Singleton<MainMenuController>
     {
         PlayerPrefs.DeleteAll();
         PlayerPrefs.Save();
-        UIManager.Instance.ShowOnly(UIPaneltype.login);     
+        UIManager.Instance.ShowOnly(UIPaneltype.login);
+        LoginController.Instance.ResetInput();
 
         //Gửi lệnh logout về server
         LogoutPacket packet = new LogoutPacket();

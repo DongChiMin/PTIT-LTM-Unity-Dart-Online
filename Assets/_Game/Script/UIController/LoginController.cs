@@ -4,7 +4,7 @@ using System.Net.Sockets;
 using TMPro;
 using UnityEngine;
 
-public class LoginController : MonoBehaviour
+public class LoginController : Singleton<LoginController>
 {
     [SerializeField] TMP_InputField usernameInput;
     [SerializeField] TMP_InputField passwordInput;
@@ -24,5 +24,11 @@ public class LoginController : MonoBehaviour
     public void OnClickRegister()
     {
         UIManager.Instance.ShowOnly(UIPaneltype.register);
+    }
+
+    public void ResetInput()
+    {
+        usernameInput.text = "";
+        passwordInput.text = "";
     }
 }
