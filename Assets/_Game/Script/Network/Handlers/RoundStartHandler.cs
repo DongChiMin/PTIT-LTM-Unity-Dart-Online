@@ -48,8 +48,18 @@ public class RoundStartHandler
         switch (status)
         {
             case "SUCCESS":
-                float force = jsonData["data"]["force"];
-                RoundController.Instance.SetOpponentForceReceived(force);
+                float force;
+                //Nếu là người kia ném thì mới cập nhật lực
+                if (PlayerPrefs.GetInt("user_id") != jsonData["data"]["playerId"])
+                {
+                    force = jsonData["data"]["force"];
+                }
+                else
+                {
+                    force = -1f;
+                }
+
+                    RoundController.Instance.SetOpponentForceReceived(force);
                 break;
             case "FAIL":
 

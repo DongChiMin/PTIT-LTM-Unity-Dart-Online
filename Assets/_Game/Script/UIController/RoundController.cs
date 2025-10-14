@@ -43,7 +43,15 @@ public class RoundController : Singleton<RoundController>
 
     public void SetOpponentForceReceived(float force)
     {
-        opponentForceReceived.text = "Lực ném của đối thủ nhận được: " + force.ToString();
+        if(force < 0)
+        {
+            opponentForceReceived.text = "Đang trong lượt ném của bạn";
+        }
+        else
+        {
+            opponentForceReceived.text = "Lực ném của đối thủ nhận được: " + force.ToString();
+        }
+        
     }
 
     public void SetScore(int p1Score, int p2Score)
