@@ -27,7 +27,7 @@ public class MatchEndHandler
                 int opponentScore;
                 int opponentId;
                 string opponentName;
-                if (PlayerPrefs.GetString("user_name") == nameP1)
+                if (PlayerPrefs.GetString("user_playerName").ToLower() == nameP1)
                 {
                     yourScore = scoreP1;
                     opponentScore = scoreP2;
@@ -41,27 +41,54 @@ public class MatchEndHandler
                     opponentId = idP1;
                     opponentName = nameP1;
                 }
-                if(yourScore > opponentScore)
+
+                string reason = jsonData["data"]["reason"];
+
+                //Nếu có người chơi thoát trận giữa chừng
+                if (reason == "player_left")
                 {
-                    //WIN
-                    MatchEndController.Instance.SetMatchEndContent(yourScore, opponentScore, 3, "VICTORY");
-                    MatchEndController.Instance.SetOpponentAttribute(opponentId, opponentName);
+                    string leftPlayer = jsonData["data"]["leftPlayer"];
+                    Debug.Log(PlayerPrefs.GetString("user_playerName").ToLower());
+                    if(PlayerPrefs.GetString("user_playerName").ToLower() == leftPlayer)
+                    {
+                        //DEFEAT
+                        MatchEndController.Instance.SetMatchEndContent(-1, opponentScore, -2, "DEFEAT");
+                        MatchEndController.Instance.SetOpponentAttribute(opponentId, opponentName, reason);
+                    }
+                    else
+                    {
+                        //WIN
+                        MatchEndController.Instance.SetMatchEndContent(yourScore, -1, 3, "VICTORY");
+                        MatchEndController.Instance.SetOpponentAttribute(opponentId, opponentName, reason);
+                    }
                 }
-                else if (yourScore < opponentScore)
-                {
-                    //DEFEAT
-                    MatchEndController.Instance.SetMatchEndContent(yourScore, opponentScore, -2, "DEFEAT");
-                    MatchEndController.Instance.SetOpponentAttribute(opponentId, opponentName);
-                }
+                //Nếu không có trường hợp người chơi thoát trận giữa chừng
                 else
                 {
-                    //DRAW
-                    MatchEndController.Instance.SetMatchEndContent(yourScore, opponentScore, +1, "DRAW");
-                    MatchEndController.Instance.SetOpponentAttribute(opponentId, opponentName);
+                    if (yourScore > opponentScore)
+                    {
+                        //WIN
+                        MatchEndController.Instance.SetMatchEndContent(yourScore, opponentScore, 3, "VICTORY");
+                        MatchEndController.Instance.SetOpponentAttribute(opponentId, opponentName, reason);
+                    }
+                    else if (yourScore < opponentScore)
+                    {
+                        //DEFEAT
+                        MatchEndController.Instance.SetMatchEndContent(yourScore, opponentScore, -2, "DEFEAT");
+                        MatchEndController.Instance.SetOpponentAttribute(opponentId, opponentName, reason);
+                    }
+                    else
+                    {
+                        //DRAW
+                        MatchEndController.Instance.SetMatchEndContent(yourScore, opponentScore, +1, "DRAW");
+                        MatchEndController.Instance.SetOpponentAttribute(opponentId, opponentName, reason);
+                    }
                 }
-                    break;
+                UIManager.Instance.ShowOnly(UIPaneltype.matchEnd);
+                break;
 
             case "FAIL":
+                Debug.Log("status của msg = FAIL");
                 break;
 
             default:

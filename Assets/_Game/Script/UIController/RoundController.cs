@@ -87,7 +87,11 @@ public class RoundController : Singleton<RoundController>
 
     public void OnClickEnd()
     {
-
+        ExitMatchPacket packet = new ExitMatchPacket(PlayerPrefs.GetInt("user_id"));
+        NetworkStream stream = ServerConnection.Instance.GetStream();
+        PacketSender.SendPacket(packet, stream);
+        
+        UIManager.Instance.HideAll();
     }
 
     public void SetPlayerP(string playerP)

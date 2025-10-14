@@ -53,7 +53,7 @@ public class MessageRouter : Singleton<MessageRouter>
             case "response_round_result":
                 break;
             case "response_match_end":
-                //{ "response":"response_match_end","status":"SUCCESS","data":{ "matchId":2,"p1":"hoang","p2":"nguyet","scoreP1":170,"scoreP2":50,"winner":"hoang"} }
+                //{ "response":"response_match_end","status":"SUCCESS","data":{ "matchId":2,"idP1":2,"p1":"hoang","idP2":3,"p2":"nguyet","scoreP1":170,"scoreP2":50,"winner":"hoang"} }
                 matchEndHandler.Handle(json);
                 break;
             case "response_exit_match":
