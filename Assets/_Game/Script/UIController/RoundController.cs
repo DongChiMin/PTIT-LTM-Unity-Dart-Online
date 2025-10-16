@@ -8,8 +8,6 @@ using UnityEngine.UI;
 
 public class RoundController : Singleton<RoundController>
 {
-
-
     [SerializeField] TextMeshProUGUI playerNameTurn;
     [SerializeField] TextMeshProUGUI round;
 
@@ -39,6 +37,15 @@ public class RoundController : Singleton<RoundController>
 
         scoreInput.interactable = scoreField;
         sendScore.interactable = scoreField;
+    }
+
+    public void ResetAttribute()
+    {
+        scoreInput.text = "";
+        forceInput.text = "";
+        opponentForceReceived.text = "";
+        yourScore.text = "";
+        opponentScore.text = "";
     }
 
     public void SetOpponentForceReceived(float force)
