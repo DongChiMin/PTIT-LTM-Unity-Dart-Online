@@ -27,7 +27,7 @@ public class MatchEndHandler
                 int opponentScore;
                 int opponentId;
                 string opponentName;
-                if (PlayerPrefs.GetString("user_playerName").ToLower() == nameP1)
+                if (PlayerPrefs.GetString("user_username").ToLower() == nameP1)
                 {
                     yourScore = scoreP1;
                     opponentScore = scoreP2;
@@ -48,8 +48,7 @@ public class MatchEndHandler
                 if (reason == "player_left")
                 {
                     string leftPlayer = jsonData["data"]["leftPlayer"];
-                    Debug.Log(PlayerPrefs.GetString("user_playerName").ToLower());
-                    if(PlayerPrefs.GetString("user_playerName").ToLower() == leftPlayer)
+                    if(PlayerPrefs.GetString("user_username").ToLower() == leftPlayer)
                     {
                         //DEFEAT
                         MatchEndController.Instance.SetMatchEndContent(-1, opponentScore, -2, "DEFEAT");
