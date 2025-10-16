@@ -44,8 +44,8 @@ public class RoundController : Singleton<RoundController>
         scoreInput.text = "";
         forceInput.text = "";
         opponentForceReceived.text = "";
-        yourScore.text = "Điểm của bạn: ";
-        opponentScore.text = "Điểm của đối thủ: ";
+        yourScore.text = "Điểm của bạn: 0";
+        opponentScore.text = "Điểm của đối thủ: 0";
     }
 
     public void SetOpponentForceReceived(float force)
