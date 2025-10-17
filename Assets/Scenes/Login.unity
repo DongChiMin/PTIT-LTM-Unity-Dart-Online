@@ -19406,9 +19406,9 @@ MonoBehaviour:
   forceInput: {fileID: 392480241}
   sendScore: {fileID: 7201685}
   sendForce: {fileID: 1863083995}
-  opponentForceReceived: {fileID: 231749509}
-  yourScore: {fileID: 1404404702}
-  opponentScore: {fileID: 457514160}
+  opponentForceReceived: {fileID: 2108847917}
+  yourScore: {fileID: 1994727475}
+  opponentScore: {fileID: 231749509}
 --- !u!1 &283803307
 GameObject:
   m_ObjectHideFlags: 0
@@ -20337,7 +20337,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ace9fd4a1b1b39446afcc70cb9c58eda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serverIpAddress: localhost
+  serverIpAddress: 26.116.112.113
   serverPort: 1234
 --- !u!4 &390615798
 Transform:
@@ -74880,7 +74880,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1901204116
 RectTransform:
   m_ObjectHideFlags: 0

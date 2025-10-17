@@ -74,7 +74,8 @@ public class RoundStartHandler
                     force = -1f;
                 }
 
-                    RoundController.Instance.SetOpponentForceReceived(force);
+                //Set lực ném trên màn hình
+                    //RoundController.Instance.SetOpponentForceReceived(force);
                 break;
             case "FAIL":
 

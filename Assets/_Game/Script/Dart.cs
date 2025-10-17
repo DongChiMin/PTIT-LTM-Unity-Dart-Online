@@ -122,7 +122,7 @@ public class Dart : MonoBehaviour
         if (Physics.Raycast(from, direction, out hit, 6f, LayerMask.GetMask("Score")))
         {
             Debug.Log("Raycast hit at: " + hit.point);
-            CalculateScore(hit.point);
+            CalculateScore(hit.point, other.gameObject.transform);
         }
         else
         {
@@ -172,9 +172,9 @@ public class Dart : MonoBehaviour
         3, 17, 2, 15, 10
     };
 
-    void CalculateScore(Vector3 hitPoint)
+    void CalculateScore(Vector3 hitPoint, Transform dartBoard)
     {
-        Vector3 center = transform.position;
+        Vector3 center = dartBoard.position;
         Vector3 dir = hitPoint - center;
 
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
