@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.Burst.CompilerServices;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public enum DartState
 {
@@ -108,8 +109,22 @@ public class Dart : MonoBehaviour
         ChangeState(DartState.Hit);
         Hit();
 
-        //Gửi dữ liệu điểm về server
-        //(Trong script ScoreCylinder)
+        //Kiểm tra va chạm
+        Vector3 from = transform.position + transform.forward * 3f;
+        Vector3 direction = transform.forward * -1f;
+
+
+        Debug.DrawRay(from, direction * 6f, Color.red, 1f);
+        RaycastHit hit;
+        if (Physics.Raycast(from, direction, out hit, 6f, LayerMask.GetMask("Score")))
+        {
+            Debug.Log("Raycast hit at: " + hit.point);
+            CalculateScore(hit.point);
+        }
+        else
+        {
+            RoundController.Instance.SendScore(0);
+        }
     }
 
     void Hit()
@@ -141,5 +156,40 @@ public class Dart : MonoBehaviour
         Vector3 end = origin + direction.normalized * distance;
 
         Gizmos.DrawLine(origin, end);
+    }
+
+    //PHẦN TÍNH ĐIỂM
+    int[] sectorScores = new int[20]
+    {
+        6, 13, 4, 18, 1,
+        20, 5, 12, 9, 14,
+        11, 8, 16, 7, 19,
+        3, 17, 2, 15, 10
+    };
+
+    void CalculateScore(Vector3 hitPoint)
+    {
+        Vector3 center = transform.position;
+        Vector3 dir = hitPoint - center;
+
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        if (angle < 0) angle += 360;
+        Debug.Log("Angle:" + angle);
+
+        //Hiện tại trong logic 0 độ --> 18 dộ là ô điểm thứ nhất. Nhưng thực tế -9 độ --> 9 độ mới là ô điểm thứ nhất
+        //Giải pháp: offset cộng 9 độ để từ -9 đến 9 là ô điểm thứ nhất
+        angle += 9f;
+        if (angle > 360) angle -= 360;
+
+        int numberOfSectors = 20;
+        float sectorAngle = 360f / numberOfSectors;
+
+        int sectorIndex = Mathf.FloorToInt(angle / sectorAngle);
+        int score = sectorScores[sectorIndex]; // Mảng điểm của từng lát pizza
+
+        Debug.Log($"Hit sector {sectorIndex}, Score: {score}");
+
+        //Gửi điểm về server
+        RoundController.Instance.SendScore(score);
     }
 }
