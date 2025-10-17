@@ -28,6 +28,7 @@ public class OnlineUsersHandler
                 break;
             case "FAIL":
                 Debug.Log("Lấy danh sách người chơi online thất bại");
+                PlayerOnlineListController.Instance.ResetOnlineUsersList();
                 break;
             default:
                 Debug.Log("Lỗi status của dữ liệu:" + jsonData);
