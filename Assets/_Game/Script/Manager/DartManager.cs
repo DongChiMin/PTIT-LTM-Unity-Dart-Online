@@ -18,6 +18,11 @@ public class DartManager : Singleton<DartManager>
     // Start is called before the first frame update
     void Start()
     {
+        OnInit();
+    }
+
+    public void OnInit()
+    {
         isHit = false;
 
         for (int i = 0; i < 40; i++)
@@ -32,9 +37,6 @@ public class DartManager : Singleton<DartManager>
             dart.gameObject.SetActive(false);
             darts.Push(dart);
         }
-
-        //Lấy phi tiêu đầu tiên
-        ReloadDart();
     }
 
     // Update is called once per frame
@@ -62,7 +64,7 @@ public class DartManager : Singleton<DartManager>
         return currentDart;
     }
 
-    void ReloadDart()
+    public GameObject ReloadDart()
     {
         currentDart = darts.Pop();
         currentDart.gameObject.SetActive(true);
@@ -71,5 +73,7 @@ public class DartManager : Singleton<DartManager>
         playerController.SetDart(currentDart);
 
         isHit = false;
+
+        return currentDart.gameObject;
     }
 }

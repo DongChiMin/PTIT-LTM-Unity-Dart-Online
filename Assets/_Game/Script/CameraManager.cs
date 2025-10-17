@@ -98,4 +98,9 @@ public class CameraManager : Singleton<CameraManager>
         }
     }
 
+    public void SetCameraFollow(GameObject follow)
+    {
+        currentCVCamera.Follow = follow.transform;
+    }
+
 }

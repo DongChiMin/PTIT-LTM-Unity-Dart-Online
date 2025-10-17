@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -45,8 +45,13 @@ public class GameManager : Singleton<GameManager>
                 break;
 
             case GameState.GamePlay:
-                Debug.Log("HELLLOOO");
+                //Tắt UI
+                UIManager.Instance.HideAll();
+
+                DartManager.Instance.OnInit();
+                GameObject dart = DartManager.Instance.ReloadDart();
                 CameraManager.Instance.SetCamera(CameraType.gameplay);
+                CameraManager.Instance.SetCameraFollow(dart);
                 break;
 
             case GameState.MatchEnd:
