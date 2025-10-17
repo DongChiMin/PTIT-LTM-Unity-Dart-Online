@@ -45,8 +45,8 @@ public class GameManager : Singleton<GameManager>
                 break;
 
             case GameState.GamePlay:
-                //Tắt UI
-                UIManager.Instance.HideAll();
+                //đổi UI
+                UIManager.Instance.ShowOnly(UIPaneltype.gameplayUI);
 
                 DartManager.Instance.OnInit();
                 CameraManager.Instance.SetCamera(CameraType.gameplay);

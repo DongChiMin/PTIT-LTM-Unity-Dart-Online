@@ -17,7 +17,8 @@ public enum UIPaneltype
     playingDemo,
     matchEnd,
     playerDetail,
-    ranking
+    ranking,
+    gameplayUI
 }
 
 public class UIManager : Singleton<UIManager>
