@@ -65,7 +65,7 @@ public class Dart : MonoBehaviour
         }
     }
 
-    public void Shoot()
+    public void Shoot(float force)
     {
         // Góc lệch ngẫu nhiên
         float randomAngleX = UnityEngine.Random.Range(minAngleX, maxAngleX); // lệch theo ngang
@@ -130,6 +130,8 @@ public class Dart : MonoBehaviour
     void Hit()
     {
         //Khi bắn trúng đích thì dừng lại + tắt trọng lực
+        Collider collider = gameObject.GetComponent<BoxCollider>();
+        collider.enabled = false;
         rb.velocity = Vector3.zero;
         rb.useGravity = false;
     }

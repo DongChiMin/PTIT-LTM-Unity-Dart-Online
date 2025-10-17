@@ -32,7 +32,7 @@ public class PlayerController : Singleton<PlayerController>
                 //Ví dụ: Gửi lực ném (về sau sẽ truyền lực ném vào hàm shoot)
                 RoundController.Instance.SendForce(3.4f);
 
-                currentDart.Shoot();
+                ShootDart(3.4f);
             }
             //if (currentDart != null) {
             //    GetSwipeVector();
@@ -43,6 +43,11 @@ public class PlayerController : Singleton<PlayerController>
             //    }
             //}
         }
+    }
+
+    public void ShootDart(float force)
+    {
+        currentDart.Shoot(force);
     }
 
     private void GetSwipeVector()

@@ -65,6 +65,7 @@ public class RoundStartHandler
                 if (PlayerPrefs.GetInt("user_id") != jsonData["data"]["playerId"])
                 {
                     force = jsonData["data"]["force"];
+                    PlayerController.Instance.ShootDart(force);
                 }
                 else
                 {
