@@ -123,7 +123,7 @@ public class Dart : MonoBehaviour
         }
         else
         {
-            RoundController.Instance.SendScore(0);
+            StartCoroutine(SendScoreDelay(5f, 0));
         }
     }
 
@@ -192,6 +192,12 @@ public class Dart : MonoBehaviour
         Debug.Log($"Hit sector {sectorIndex}, Score: {score}");
 
         //Gửi điểm về server
+        StartCoroutine(SendScoreDelay(5f, score));
+    }
+
+    IEnumerator SendScoreDelay(float time, int score)
+    {
+        yield return new WaitForSeconds(time);
         RoundController.Instance.SendScore(score);
     }
 }
