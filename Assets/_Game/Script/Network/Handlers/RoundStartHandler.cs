@@ -20,6 +20,8 @@ public class RoundStartHandler
                 int firstTurnId = jsonData["data"]["firstTurnId"];
                 string firstTurnName = jsonData["data"]["firstTurnName"].Value;
 
+                long timeOut = jsonData["data"]["timeOut"];
+
                 //Nếu không phải là người ném trước
                 if (PlayerPrefs.GetInt("user_id") != firstTurnId)
                 {
@@ -28,6 +30,8 @@ public class RoundStartHandler
                     PlayerController.Instance.SetDart(dart);
                     CameraManager.Instance.SetCameraFollow(dart.gameObject);
                     dart.SetIsThrower(false);
+
+                    RoundController.Instance.SetOpponentThrowingUI(true);
 
                     //Phiên bản playingDemo
                     RoundController.Instance.SetFields(false, false);
@@ -40,10 +44,12 @@ public class RoundStartHandler
                     CameraManager.Instance.SetCameraFollow(dart.gameObject);
                     dart.SetIsThrower(true);
 
+                    RoundController.Instance.SetOpponentThrowingUI(false);
+
                     //Phiên bản playingDemo
                     RoundController.Instance.SetFields(true, false);
                 }
-                RoundController.Instance.SetRoundText(matchId, firstTurnName, round);
+                RoundController.Instance.SetRoundText(matchId, firstTurnName, round, timeOut);
 
                 break;
             case "FAIL":

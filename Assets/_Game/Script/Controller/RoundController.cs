@@ -20,14 +20,50 @@ public class RoundController : Singleton<RoundController>
     [SerializeField] TextMeshProUGUI yourScore;
     [SerializeField] TextMeshProUGUI opponentScore;
 
+    [SerializeField] GameObject opponentThrowingUI;
+
+    //Xử lý thời gian
+    [SerializeField] TextMeshProUGUI timeOutText;
+    private float timeRemaining;
+    private Coroutine countdownCoroutine;
+
+
     private string playerP;
     private int matchId;
 
-    public void SetRoundText(int matchId, string playerNameTurn, int round)
+    public void SetRoundText(int matchId, string playerNameTurn, int round, long timeOut)
     {
         this.matchId = matchId;
         this.round.text = "Vòng đấu: " + round.ToString();
         this.playerNameTurn.text = "lượt của: " + playerNameTurn;
+
+        //Xử lý thời gian
+        timeRemaining = timeOut / 1000f;
+        // Nếu đang có một Coroutine đang chạy, hủy nó đi trước khi bắt đầu một Coroutine mới
+        if (countdownCoroutine != null)
+        {
+            StopCoroutine(countdownCoroutine);
+        }
+        // Bắt đầu Coroutine đếm ngược
+        countdownCoroutine = StartCoroutine(CountdownTimer());
+    }
+
+    private IEnumerator CountdownTimer()
+    {
+        while (timeRemaining > 0)
+        {
+            // Hiển thị thời gian còn lại (có thể là giây hoặc phút)
+            timeOutText.text = "Thời gian còn lại: " + Mathf.Ceil(timeRemaining).ToString() + "s";
+
+            // Giảm thời gian còn lại theo mỗi giây
+            timeRemaining -= 1f;
+
+            // Chờ một giây trước khi cập nhật lại
+            yield return new WaitForSeconds(1f);
+        }
+
+        // Khi hết thời gian, cập nhật UI 
+        timeOutText.text = "Hết thời gian!";
     }
 
     public void SetFields(bool forceField, bool scoreField)
@@ -44,8 +80,8 @@ public class RoundController : Singleton<RoundController>
         scoreInput.text = "";
         forceInput.text = "";
         opponentForceReceived.text = "";
-        yourScore.text = "Điểm của bạn: 0";
-        opponentScore.text = "Điểm của đối thủ: 0";
+        yourScore.text = "0";
+        opponentScore.text = "0";
     }
 
     public void SetOpponentForceReceived(float force)
@@ -76,8 +112,8 @@ public class RoundController : Singleton<RoundController>
             opponentScore = p1Score;
         }
 
-        this.yourScore.text = "Điểm của bạn: " + yourScore.ToString();
-        this.opponentScore.text = "Điểm của đối thủ: " + opponentScore.ToString();
+        this.yourScore.text = yourScore.ToString();
+        this.opponentScore.text = opponentScore.ToString();
     }
 
     public void OnClickSendScore()
@@ -126,5 +162,10 @@ public class RoundController : Singleton<RoundController>
         ThrowForcePacket packet = new ThrowForcePacket(matchId, force);
         NetworkStream stream = ServerConnection.Instance.GetStream();
         PacketSender.SendPacket(packet, stream);
+    }
+
+    public void SetOpponentThrowingUI(bool boolean)
+    {
+            opponentThrowingUI.SetActive(boolean);
     }
 }
