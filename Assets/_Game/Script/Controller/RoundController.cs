@@ -167,5 +167,9 @@ public class RoundController : Singleton<RoundController>
     public void SetOpponentThrowingUI(bool boolean)
     {
             opponentThrowingUI.SetActive(boolean);
+        if (!boolean)
+        {
+            this.playerNameTurn.color = Color.white;
+        }
     }
 }

@@ -126,7 +126,8 @@ public class Dart : MonoBehaviour
         }
         else
         {
-            if(isThrower) StartCoroutine(SendScoreDelay(2f, 0));
+            ScoreTextController.Instance.TrigerText(transform.position + new Vector3(-2f, 2f, -3f), "0");
+            if (isThrower) StartCoroutine(SendScoreDelay(2f, 0));
         }
     }
 
@@ -194,6 +195,8 @@ public class Dart : MonoBehaviour
 
         Debug.Log($"Hit sector {sectorIndex}, Score: {score}");
 
+        ScoreTextController.Instance.TrigerText(transform.position + new Vector3(-2f, 2f, -3f), score.ToString());
+
         //Gửi điểm về server
         if(isThrower) StartCoroutine(SendScoreDelay(2f, score));
     }
@@ -208,4 +211,6 @@ public class Dart : MonoBehaviour
     {
         isThrower = boolean;
     }
+
+
 }
