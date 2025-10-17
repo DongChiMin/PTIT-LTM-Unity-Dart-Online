@@ -25,7 +25,12 @@ public class MainMenuController : Singleton<MainMenuController>
 
     public void onClickRanking()
     {
+        UIManager.Instance.ShowOnly(UIPaneltype.playerRanking);
 
+        // 2. Gửi yêu cầu lấy danh sách bảng xếp hạng lên server
+        GetRankingPacket packet = new GetRankingPacket();
+        NetworkStream stream = ServerConnection.Instance.GetStream();
+        PacketSender.SendPacket(packet, stream);
     }
 
     public void onClickExit()

@@ -12,7 +12,8 @@ public enum UIPaneltype
     playerOnlineList,
     waitingInvite,
     inviteFailed,
-    waitingAccept
+    waitingAccept,
+    playerRanking
 }
 
 public class UIManager : Singleton<UIManager>
