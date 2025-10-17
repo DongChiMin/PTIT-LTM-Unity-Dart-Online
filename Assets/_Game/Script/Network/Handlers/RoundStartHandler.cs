@@ -27,6 +27,7 @@ public class RoundStartHandler
                     Dart dart = DartManager.Instance.ReloadDart();
                     PlayerController.Instance.SetDart(dart);
                     CameraManager.Instance.SetCameraFollow(dart.gameObject);
+                    dart.SetIsThrower(false);
 
                     //Phiên bản playingDemo
                     RoundController.Instance.SetFields(false, false);
@@ -37,6 +38,7 @@ public class RoundStartHandler
                     Dart dart = DartManager.Instance.ReloadDart();
                     PlayerController.Instance.SetDart(dart);
                     CameraManager.Instance.SetCameraFollow(dart.gameObject);
+                    dart.SetIsThrower(true);
 
                     //Phiên bản playingDemo
                     RoundController.Instance.SetFields(true, false);

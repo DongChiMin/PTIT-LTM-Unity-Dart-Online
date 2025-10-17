@@ -37,6 +37,9 @@ public class Dart : MonoBehaviour
     private DartState dartState;
     public event Action<DartState> OnStateChanged;
 
+    //Nếu đang đến lượt mình ném thì isThrower=true
+    private bool isThrower;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -123,7 +126,7 @@ public class Dart : MonoBehaviour
         }
         else
         {
-            StartCoroutine(SendScoreDelay(2f, 0));
+            if(isThrower) StartCoroutine(SendScoreDelay(2f, 0));
         }
     }
 
@@ -192,12 +195,17 @@ public class Dart : MonoBehaviour
         Debug.Log($"Hit sector {sectorIndex}, Score: {score}");
 
         //Gửi điểm về server
-        StartCoroutine(SendScoreDelay(2f, score));
+        if(isThrower) StartCoroutine(SendScoreDelay(2f, score));
     }
 
     IEnumerator SendScoreDelay(float time, int score)
     {
         yield return new WaitForSeconds(time);
         RoundController.Instance.SendScore(score);
+    }
+
+    public void SetIsThrower(bool boolean)
+    {
+        isThrower = boolean;
     }
 }
