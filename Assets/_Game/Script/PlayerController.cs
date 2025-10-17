@@ -25,7 +25,7 @@ public class PlayerController : Singleton<PlayerController>
     // Update is called once per frame
     void Update()
     {
-        if (isThrower)
+        if (isThrower && currentDart.GetCurrentState() != DartState.Hit)
         {
             if (Input.GetMouseButtonDown(0))
             {
