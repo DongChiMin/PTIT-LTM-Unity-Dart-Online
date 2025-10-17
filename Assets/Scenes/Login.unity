@@ -19401,12 +19401,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerNameTurn: {fileID: 1098466473}
-  round: {fileID: 812348689}
+  round: {fileID: 91493781}
   scoreInput: {fileID: 1888800847}
   forceInput: {fileID: 392480241}
   sendScore: {fileID: 7201685}
   sendForce: {fileID: 1863083995}
-  opponentForceReceived: {fileID: 1110067001}
+  opponentForceReceived: {fileID: 231749509}
   yourScore: {fileID: 1404404702}
   opponentScore: {fileID: 457514160}
 --- !u!1 &283803307

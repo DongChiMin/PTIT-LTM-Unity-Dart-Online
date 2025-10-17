@@ -23,6 +23,12 @@ public class DartManager : Singleton<DartManager>
 
     public void OnInit()
     {
+        // Lặp qua tất cả các gameObject con và xóa chúng
+        foreach (Transform child in transform)
+        {
+            Destroy(child.gameObject); // Xóa gameObject con
+        }
+
         isHit = false;
 
         for (int i = 0; i < 40; i++)
@@ -47,8 +53,8 @@ public class DartManager : Singleton<DartManager>
             if (currentDart.GetCurrentState() == DartState.Hit && !isHit)
             {
                 isHit = true;
-                ////Hủy phi tiêu đã cắm sau 2 giây
-                //StartCoroutine(DisableDart(currentDart));
+                //Hủy phi tiêu đã cắm sau 5 giây
+                StartCoroutine(DisableDart(currentDart));
 
                 //Invoke(nameof(ReloadDart), 2);
             }
