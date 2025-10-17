@@ -20,14 +20,14 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (currentDart != null) {
-            GetSwipeVector();
+        //if (currentDart != null) {
+        //    GetSwipeVector();
 
-            if (currentDart.GetCurrentState() == DartState.Ready && Input.GetMouseButtonDown(0))
-            {
-                //currentDart.Shoot();
-            }
-        }
+        //    if (currentDart.GetCurrentState() == DartState.Ready && Input.GetMouseButtonDown(0))
+        //    {
+        //        //currentDart.Shoot();
+        //    }
+        //}
     }
 
     private void GetSwipeVector()

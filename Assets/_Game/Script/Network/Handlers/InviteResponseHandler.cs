@@ -24,7 +24,8 @@ public class InviteResponseHandler
                 //Set thông tin người chơi nào đã từ chối
                 if(statusData == "ACCEPT")
                 {
-                    UIManager.Instance.ShowOnly(UIPaneltype.playingDemo);
+                    //UIManager.Instance.ShowOnly(UIPaneltype.playingDemo);
+                    GameManager.Instance.ChangeState(GameState.GamePlay);
                     RoundController.Instance.ResetAttribute();
                     RoundController.Instance.SetPlayerP("P1");
                 }

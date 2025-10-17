@@ -15,6 +15,7 @@ public class MainMenuController : Singleton<MainMenuController>
 
     
     public void onClickPlay() {
+        CameraManager.Instance.SetCamera(CameraType.onlineListMenu);
         UIManager.Instance.ShowOnly(UIPaneltype.playerOnlineList);
 
         //Gửi lệnh lấy danh sách người choi online
@@ -37,6 +38,7 @@ public class MainMenuController : Singleton<MainMenuController>
     {
         PlayerPrefs.DeleteAll();
         PlayerPrefs.Save();
+        CameraManager.Instance.SetCamera(CameraType.login);
         UIManager.Instance.ShowOnly(UIPaneltype.login);
         LoginController.Instance.ResetInput();
 

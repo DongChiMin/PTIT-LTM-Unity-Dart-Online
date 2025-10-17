@@ -17,6 +17,7 @@ public class PlayerOnlineListController : Singleton<PlayerOnlineListController>
     private int inviteFromId = -1;
     public void onClickExit()
     {
+        CameraManager.Instance.SetCamera(CameraType.mainMenu);
         UIManager.Instance.ShowOnly(UIPaneltype.mainMenu);
     }
 
@@ -41,7 +42,8 @@ public class PlayerOnlineListController : Singleton<PlayerOnlineListController>
         PacketSender.SendPacket(packet, stream);
 
         //Vào màn hình chơi
-        UIManager.Instance.ShowOnly(UIPaneltype.playingDemo);
+        //UIManager.Instance.ShowOnly(UIPaneltype.playingDemo);
+        GameManager.Instance.ChangeState(GameState.GamePlay);
         RoundController.Instance.SetPlayerP("P2");
         RoundController.Instance.ResetAttribute();
     }

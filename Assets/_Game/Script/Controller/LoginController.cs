@@ -18,6 +18,7 @@ public class LoginController : Singleton<LoginController>
 
     public void OnClickTryAgain()
     {
+        CameraManager.Instance.SetCamera(CameraType.login);
         UIManager.Instance.ShowOnly(UIPaneltype.login);
     }
 
