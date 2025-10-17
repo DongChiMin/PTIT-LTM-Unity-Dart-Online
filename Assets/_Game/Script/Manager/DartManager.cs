@@ -47,10 +47,10 @@ public class DartManager : Singleton<DartManager>
             if (currentDart.GetCurrentState() == DartState.Hit && !isHit)
             {
                 isHit = true;
-                //Hủy phi tiêu đã cắm sau 2 giây
-                StartCoroutine(DisableDart(currentDart));
+                ////Hủy phi tiêu đã cắm sau 2 giây
+                //StartCoroutine(DisableDart(currentDart));
 
-                Invoke(nameof(ReloadDart), 2);
+                //Invoke(nameof(ReloadDart), 2);
             }
         }
     }
