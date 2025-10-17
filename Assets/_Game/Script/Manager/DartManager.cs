@@ -67,16 +67,16 @@ public class DartManager : Singleton<DartManager>
         return currentDart;
     }
 
-    public GameObject ReloadDart()
+    public Dart ReloadDart()
     {
         currentDart = darts.Pop();
         currentDart.gameObject.SetActive(true);
 
         //CameraManager.Instance.SetTarget(currentDart.gameObject);
-        playerController.SetDart(currentDart);
+        //playerController.SetDart(currentDart);
 
         isHit = false;
 
-        return currentDart.gameObject;
+        return currentDart;
     }
 }

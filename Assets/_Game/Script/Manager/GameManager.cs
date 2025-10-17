@@ -49,9 +49,10 @@ public class GameManager : Singleton<GameManager>
                 UIManager.Instance.HideAll();
 
                 DartManager.Instance.OnInit();
-                GameObject dart = DartManager.Instance.ReloadDart();
+                Dart dart = DartManager.Instance.ReloadDart();
+                PlayerController.Instance.SetDart(dart);
                 CameraManager.Instance.SetCamera(CameraType.gameplay);
-                CameraManager.Instance.SetCameraFollow(dart);
+                CameraManager.Instance.SetCameraFollow(dart.gameObject);
                 break;
 
             case GameState.MatchEnd:

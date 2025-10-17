@@ -113,4 +113,18 @@ public class RoundController : Singleton<RoundController>
     {
         this.playerP = playerP;
     }
+
+    public void SendScore(int score)
+    {
+        ThrowScorePacket packet = new ThrowScorePacket(matchId, score);
+        NetworkStream stream = ServerConnection.Instance.GetStream();
+        PacketSender.SendPacket(packet, stream);
+    }
+
+    public void SendForce(float force)
+    {
+        ThrowForcePacket packet = new ThrowForcePacket(matchId, force);
+        NetworkStream stream = ServerConnection.Instance.GetStream();
+        PacketSender.SendPacket(packet, stream);
+    }
 }

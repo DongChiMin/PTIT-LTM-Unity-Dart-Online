@@ -107,6 +107,9 @@ public class Dart : MonoBehaviour
         //Chuyển trạng thái của phi tiêu thành hit
         ChangeState(DartState.Hit);
         Hit();
+
+        //Gửi dữ liệu điểm về server
+        //(Trong script ScoreCylinder)
     }
 
     void Hit()

@@ -23,10 +23,12 @@ public class RoundStartHandler
                 //Nếu không phải là người ném trước
                 if (PlayerPrefs.GetInt("user_id") != firstTurnId)
                 {
+                    PlayerController.Instance.SetIsThrower(false);
                     RoundController.Instance.SetFields(false, false);
                 }
                 else
                 {
+                    PlayerController.Instance.SetIsThrower(true);
                     RoundController.Instance.SetFields(true, false);
                 }
                 RoundController.Instance.SetRoundText(matchId, firstTurnName, round);
