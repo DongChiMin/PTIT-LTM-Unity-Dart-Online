@@ -24,11 +24,21 @@ public class RoundStartHandler
                 if (PlayerPrefs.GetInt("user_id") != firstTurnId)
                 {
                     PlayerController.Instance.SetIsThrower(false);
+                    Dart dart = DartManager.Instance.ReloadDart();
+                    PlayerController.Instance.SetDart(dart);
+                    CameraManager.Instance.SetCameraFollow(dart.gameObject);
+
+                    //Phiên bản playingDemo
                     RoundController.Instance.SetFields(false, false);
                 }
                 else
                 {
                     PlayerController.Instance.SetIsThrower(true);
+                    Dart dart = DartManager.Instance.ReloadDart();
+                    PlayerController.Instance.SetDart(dart);
+                    CameraManager.Instance.SetCameraFollow(dart.gameObject);
+
+                    //Phiên bản playingDemo
                     RoundController.Instance.SetFields(true, false);
                 }
                 RoundController.Instance.SetRoundText(matchId, firstTurnName, round);
