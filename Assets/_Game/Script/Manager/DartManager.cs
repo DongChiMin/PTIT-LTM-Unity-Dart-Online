@@ -42,13 +42,16 @@ public class DartManager : Singleton<DartManager>
     // Update is called once per frame
     void Update()
     {
-        if (currentDart.GetCurrentState() == DartState.Hit && !isHit)
+        if (currentDart != null)
         {
-            isHit = true;
-            //Hủy phi tiêu đã cắm sau 2 giây
-            StartCoroutine(DisableDart(currentDart));
+            if (currentDart.GetCurrentState() == DartState.Hit && !isHit)
+            {
+                isHit = true;
+                //Hủy phi tiêu đã cắm sau 2 giây
+                StartCoroutine(DisableDart(currentDart));
 
-            Invoke(nameof(ReloadDart), 2);
+                Invoke(nameof(ReloadDart), 2);
+            }
         }
     }
 
