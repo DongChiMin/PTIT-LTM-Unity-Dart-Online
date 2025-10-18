@@ -53,5 +53,8 @@ public class ScoreCylinder : MonoBehaviour
         int score = sectorScores[sectorIndex]; // Mảng điểm của từng lát pizza
 
         Debug.Log($"Hit sector {sectorIndex}, Score: {score}");
+
+        //Gửi điểm về server
+        RoundController.Instance.SendScore(score);
     }
 }

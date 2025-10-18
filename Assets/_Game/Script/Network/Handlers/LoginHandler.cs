@@ -16,6 +16,7 @@ public class LoginHandler
         {
             case "SUCCESS":
                 //Chuyển sang UI Main Menu
+                CameraManager.Instance.SetCamera(CameraType.mainMenu);
                 UIManager.Instance.ShowOnly(UIPaneltype.mainMenu);
 
                 //Lấy data từ JSON

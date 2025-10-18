@@ -18,6 +18,17 @@ public class DartManager : Singleton<DartManager>
     // Start is called before the first frame update
     void Start()
     {
+        OnInit();
+    }
+
+    public void OnInit()
+    {
+        // Lặp qua tất cả các gameObject con và xóa chúng
+        foreach (Transform child in transform)
+        {
+            Destroy(child.gameObject); // Xóa gameObject con
+        }
+
         isHit = false;
 
         for (int i = 0; i < 40; i++)
@@ -32,21 +43,21 @@ public class DartManager : Singleton<DartManager>
             dart.gameObject.SetActive(false);
             darts.Push(dart);
         }
-
-        //Lấy phi tiêu đầu tiên
-        ReloadDart();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (currentDart.GetCurrentState() == DartState.Hit && !isHit)
+        if (currentDart != null)
         {
-            isHit = true;
-            //Hủy phi tiêu đã cắm sau 2 giây
-            StartCoroutine(DisableDart(currentDart));
+            if (currentDart.GetCurrentState() == DartState.Hit && !isHit)
+            {
+                isHit = true;
+                //Hủy phi tiêu đã cắm sau 5 giây
+                StartCoroutine(DisableDart(currentDart));
 
-            Invoke(nameof(ReloadDart), 2);
+                //Invoke(nameof(ReloadDart), 2);
+            }
         }
     }
 
@@ -54,7 +65,10 @@ public class DartManager : Singleton<DartManager>
     {
         Dart dartToDestroy = dart;
         yield return new WaitForSeconds(timeToDestroyHitDart);
-        dartToDestroy.gameObject.SetActive(false);
+        if (dartToDestroy != null)
+        {
+            dartToDestroy.gameObject.SetActive(false);
+        }
     }
 
     public Dart GetCurrentDart()
@@ -62,14 +76,16 @@ public class DartManager : Singleton<DartManager>
         return currentDart;
     }
 
-    void ReloadDart()
+    public Dart ReloadDart()
     {
         currentDart = darts.Pop();
         currentDart.gameObject.SetActive(true);
 
-        CameraManager.Instance.SetTarget(currentDart.gameObject);
-        playerController.SetDart(currentDart);
+        //CameraManager.Instance.SetTarget(currentDart.gameObject);
+        //playerController.SetDart(currentDart);
 
         isHit = false;
+
+        return currentDart;
     }
 }

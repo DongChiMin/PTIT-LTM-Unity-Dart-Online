@@ -1,11 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Net.Sockets;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : Singleton<PlayerController>
 {
     DartManager dartManager;
     Dart currentDart;
+
+    //Biến kiểm tra mình có phải là người ném ko
+    bool isThrower;
 
     //Touch Controll
     private Vector2 startTouchPosition;
@@ -15,19 +19,35 @@ public class PlayerController : MonoBehaviour
     {
         dartManager = DartManager.Instance;
         currentDart = dartManager.GetCurrentDart();
+        isThrower = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (currentDart != null) {
-            GetSwipeVector();
-
-            if (currentDart.GetCurrentState() == DartState.Ready && Input.GetMouseButtonDown(0))
+        if (isThrower && currentDart.GetCurrentState() != DartState.Hit)
+        {
+            if (Input.GetMouseButtonDown(0))
             {
-                //currentDart.Shoot();
+                //Ví dụ: Gửi lực ném (về sau sẽ truyền lực ném vào hàm shoot)
+                RoundController.Instance.SendForce(3.4f);
+
+                ShootDart(3.4f);
             }
+            //if (currentDart != null) {
+            //    GetSwipeVector();
+
+            //    if (currentDart.GetCurrentState() == DartState.Ready && Input.GetMouseButtonDown(0))
+            //    {
+            //        //currentDart.Shoot();
+            //    }
+            //}
         }
+    }
+
+    public void ShootDart(float force)
+    {
+        currentDart.Shoot(force);
     }
 
     private void GetSwipeVector()
@@ -73,6 +93,11 @@ public class PlayerController : MonoBehaviour
     public void SetDart(Dart dart)
     {
         currentDart = dart;
+    }
+
+    public void SetIsThrower(bool boolean)
+    {
+        isThrower = boolean;
     }
 
     private void OnDrawGizmos()

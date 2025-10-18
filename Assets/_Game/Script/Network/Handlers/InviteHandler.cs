@@ -20,13 +20,14 @@ public class InviteHandler
                 UIManager.Instance.ShowOnly(UIPaneltype.waitingAccept);
 
                 //Set int của người mời chơi
-                int fromPlayerId = jsonData["data"]["fromUser"];
+                int fromPlayerId = jsonData["data"]["fromUserId"];
+                string fromPlayerName = jsonData["data"]["fromUsername"];
                 PlayerOnlineListController.Instance.SetInviteFromId(fromPlayerId);
+                PlayerOnlineListController.Instance.SetWaitingAcceptText(fromPlayerName + " is inviting...");
 
-                
                 break;
             case "FAIL":
-                UIManager.Instance.Show(UIPaneltype.loginFailed);
+                
                 break;
             default:
                 Debug.Log("Lỗi status của dữ liệu:" + jsonData);

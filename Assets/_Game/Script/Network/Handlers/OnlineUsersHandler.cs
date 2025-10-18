@@ -18,7 +18,6 @@ public class OnlineUsersHandler
             case "SUCCESS":
                 PlayerOnlineListController.Instance.ResetOnlineUsersList();
                 JSONArray users = jsonData["data"]["users"].AsArray;
-                Debug.Log(users);
                 for (int i = 0; i < users.Count; i++)
                 {
                     string playerName = users[i]["playerName"];
@@ -29,6 +28,7 @@ public class OnlineUsersHandler
                 break;
             case "FAIL":
                 Debug.Log("Lấy danh sách người chơi online thất bại");
+                PlayerOnlineListController.Instance.ResetOnlineUsersList();
                 break;
             default:
                 Debug.Log("Lỗi status của dữ liệu:" + jsonData);

@@ -11,9 +11,14 @@ public enum UIPaneltype
     mainMenu,
     playerOnlineList,
     waitingInvite,
+    inviteTimeout,
     inviteFailed,
     waitingAccept,
-    playerRanking
+    playingDemo,
+    matchEnd,
+    playerDetail,
+    ranking,
+    gameplayUI
 }
 
 public class UIManager : Singleton<UIManager>

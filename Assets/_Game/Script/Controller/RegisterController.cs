@@ -4,25 +4,22 @@ using System.Net.Sockets;
 using TMPro;
 using UnityEngine;
 
-public class LoginController : MonoBehaviour
+public class RegisterController : MonoBehaviour
 {
     [SerializeField] TMP_InputField usernameInput;
     [SerializeField] TMP_InputField passwordInput;
-
-    public void OnClickLogin()
-    {
-        LoginPacket login = new LoginPacket(usernameInput.text, passwordInput.text);
-        NetworkStream stream = ServerConnection.Instance.GetStream();
-        PacketSender.SendPacket(login, stream);
-    }
-
-    public void OnClickTryAgain()
-    {
-        UIManager.Instance.ShowOnly(UIPaneltype.login);
-    }
+    [SerializeField] TMP_InputField playerName;
 
     public void OnClickRegister()
     {
-        UIManager.Instance.ShowOnly(UIPaneltype.register);
+        RegisterPacket packet = new RegisterPacket(usernameInput.text, passwordInput.text, playerName.text);
+        NetworkStream stream = ServerConnection.Instance.GetStream();
+        PacketSender.SendPacket(packet, stream);
+    }
+
+    public void OnClickBack()
+    {
+        UIManager.Instance.ShowOnly(UIPaneltype.login);
+        LoginController.Instance.ResetInput();
     }
 }

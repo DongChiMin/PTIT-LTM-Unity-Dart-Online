@@ -15,9 +15,10 @@ public class MainMenuController : Singleton<MainMenuController>
 
     
     public void onClickPlay() {
+        CameraManager.Instance.SetCamera(CameraType.onlineListMenu);
         UIManager.Instance.ShowOnly(UIPaneltype.playerOnlineList);
 
-        //Gửi lệnh logout về server
+        //Gửi lệnh lấy danh sách người choi online
         GetOnlineUsersPacket packet = new GetOnlineUsersPacket();
         NetworkStream stream = ServerConnection.Instance.GetStream();
         PacketSender.SendPacket(packet, stream);
@@ -42,7 +43,9 @@ public class MainMenuController : Singleton<MainMenuController>
     {
         PlayerPrefs.DeleteAll();
         PlayerPrefs.Save();
-        UIManager.Instance.ShowOnly(UIPaneltype.login);     
+        CameraManager.Instance.SetCamera(CameraType.login);
+        UIManager.Instance.ShowOnly(UIPaneltype.login);
+        LoginController.Instance.ResetInput();
 
         //Gửi lệnh logout về server
         LogoutPacket packet = new LogoutPacket();

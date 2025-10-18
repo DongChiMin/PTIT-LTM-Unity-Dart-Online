@@ -11,11 +11,13 @@ public class PlayerOnlineListController : Singleton<PlayerOnlineListController>
 
     [SerializeField] TextMeshProUGUI waitingInviteText;
     [SerializeField] TextMeshProUGUI waitingAcceptText;
+    [SerializeField] TextMeshProUGUI inviteFailedText;
 
     [SerializeField] SliderTimerUI sliderTimer;
     private int inviteFromId = -1;
     public void onClickExit()
     {
+        CameraManager.Instance.SetCamera(CameraType.mainMenu);
         UIManager.Instance.ShowOnly(UIPaneltype.mainMenu);
     }
 
@@ -40,6 +42,10 @@ public class PlayerOnlineListController : Singleton<PlayerOnlineListController>
         PacketSender.SendPacket(packet, stream);
 
         //Vào màn hình chơi
+        //UIManager.Instance.ShowOnly(UIPaneltype.playingDemo);
+        GameManager.Instance.ChangeState(GameState.GamePlay);
+        RoundController.Instance.SetPlayerP("P2");
+        RoundController.Instance.ResetAttribute();
     }
 
     public void onClickDecline()
@@ -84,6 +90,11 @@ public class PlayerOnlineListController : Singleton<PlayerOnlineListController>
     public void SetWaitingAcceptText(string msg)
     {
         waitingAcceptText.text = msg;
+    }
+
+    public void SetInviteFailedText(string msg)
+    {
+        inviteFailedText.text = msg;
     }
 
     public void SetInviteFromId (int newId)
