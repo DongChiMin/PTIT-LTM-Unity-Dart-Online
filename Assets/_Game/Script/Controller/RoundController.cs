@@ -58,6 +58,11 @@ public class RoundController : Singleton<RoundController>
             // Giảm thời gian còn lại theo mỗi giây
             timeRemaining -= 1f;
 
+            if(timeRemaining < 10)
+            {
+                timeOutText.color = Color.red;
+            }
+
             // Chờ một giây trước khi cập nhật lại
             yield return new WaitForSeconds(1f);
         }

@@ -65,7 +65,10 @@ public class DartManager : Singleton<DartManager>
     {
         Dart dartToDestroy = dart;
         yield return new WaitForSeconds(timeToDestroyHitDart);
-        dartToDestroy.gameObject.SetActive(false);
+        if (dartToDestroy != null)
+        {
+            dartToDestroy.gameObject.SetActive(false);
+        }
     }
 
     public Dart GetCurrentDart()

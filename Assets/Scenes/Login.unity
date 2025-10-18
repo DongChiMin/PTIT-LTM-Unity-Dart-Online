@@ -22663,7 +22663,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 564e7754c22b59f4b8b95a9d8f682213, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreTextPrefab: {fileID: 1527432360}
+  scoreTextPrefab: {fileID: 0}
 --- !u!1 &599735044
 GameObject:
   m_ObjectHideFlags: 0
@@ -63261,108 +63261,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1525410823}
   m_CullTransparentMesh: 1
---- !u!1001 &1527432357
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3392748296004985889, guid: 9491036832c60804589bd53839c54f6f,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3392748296004985889, guid: 9491036832c60804589bd53839c54f6f,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3392748296004985889, guid: 9491036832c60804589bd53839c54f6f,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3392748296004985889, guid: 9491036832c60804589bd53839c54f6f,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3392748296004985889, guid: 9491036832c60804589bd53839c54f6f,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3392748296004985889, guid: 9491036832c60804589bd53839c54f6f,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3392748296004985889, guid: 9491036832c60804589bd53839c54f6f,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3392748296004985889, guid: 9491036832c60804589bd53839c54f6f,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3392748296004985889, guid: 9491036832c60804589bd53839c54f6f,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3392748296004985889, guid: 9491036832c60804589bd53839c54f6f,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6636891914821364282, guid: 9491036832c60804589bd53839c54f6f,
-        type: 3}
-      propertyPath: m_Name
-      value: Score text
-      objectReference: {fileID: 0}
-    - target: {fileID: 8371275591231636606, guid: 9491036832c60804589bd53839c54f6f,
-        type: 3}
-      propertyPath: m_FontSize
-      value: 75
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6636891914821364282, guid: 9491036832c60804589bd53839c54f6f,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1527432360}
-  m_SourcePrefab: {fileID: 100100000, guid: 9491036832c60804589bd53839c54f6f, type: 3}
---- !u!1 &1527432358 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6636891914821364282, guid: 9491036832c60804589bd53839c54f6f,
-    type: 3}
-  m_PrefabInstance: {fileID: 1527432357}
-  m_PrefabAsset: {fileID: 0}
---- !u!102 &1527432359 stripped
-TextMesh:
-  m_CorrespondingSourceObject: {fileID: 8371275591231636606, guid: 9491036832c60804589bd53839c54f6f,
-    type: 3}
-  m_PrefabInstance: {fileID: 1527432357}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1527432360
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1527432358}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b02618f1f72db542af0f384659ef83a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  textMesh: {fileID: 1527432359}
 --- !u!1 &1532652523
 GameObject:
   m_ObjectHideFlags: 0
@@ -85644,4 +85542,3 @@ SceneRoots:
   - {fileID: 1172644737}
   - {fileID: 1887576720}
   - {fileID: 637196348}
-  - {fileID: 1527432357}
