@@ -162,9 +162,9 @@ public class RoundController : Singleton<RoundController>
         PacketSender.SendPacket(packet, stream);
     }
 
-    public void SendForce(float force)
+    public void SendSwipe(Vector2 swipe)
     {
-        ThrowForcePacket packet = new ThrowForcePacket(matchId, force);
+        ThrowSwipePacket packet = new ThrowSwipePacket(matchId, swipe);
         NetworkStream stream = ServerConnection.Instance.GetStream();
         PacketSender.SendPacket(packet, stream);
     }

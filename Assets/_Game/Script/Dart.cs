@@ -38,6 +38,7 @@ public class Dart : MonoBehaviour
     public event Action<DartState> OnStateChanged;
 
     //Nếu đang đến lượt mình ném thì isThrower=true
+    //nếu isThrower=true thì mới gửi thông tin điểm đến server
     private bool isThrower;
 
     void Start()
@@ -68,21 +69,62 @@ public class Dart : MonoBehaviour
         }
     }
 
-    public void Shoot(float force)
+    public void Shoot(Vector2 swipe)
     {
-        // Góc lệch ngẫu nhiên
-        float randomAngleX = UnityEngine.Random.Range(minAngleX, maxAngleX); // lệch theo ngang
-        float randomAngleY = UnityEngine.Random.Range(minAngleY, maxAngleY); // lệch theo dọc
+        // Tính hướng vuốt (normalized)
+        Vector2 dir = swipe.normalized;
+
+        // -------------------------
+        // ÁNH XẠ GÓC NGANG (Y)
+        // -------------------------
+        // Vuốt trái/phải -> thay đổi angleY (angleY là trái phải)
+        // dir.x = -1 (trái) -> angleY = minAngleY
+        // dir.x =  1 (phải) -> angleY = maxAngleY
+        float normalizedX = Mathf.InverseLerp(-Screen.width / 2, Screen.width / 2, swipe.x);
+        normalizedX = Mathf.Clamp01(normalizedX);
+        float mappedAngleY = Mathf.Lerp(minAngleY, maxAngleY, normalizedX);
+
+        // -------------------------
+        // ÁNH XẠ GÓC DỌC (X)
+        // -------------------------
+        // Vuốt từ dưới lên -> swipe.y càng lớn -> angleX càng gần maxAngleX (angleX là lên xuống)
+
+
+        // InverserLerp = (value - a ) / (b-a)
+        // Giá trị của swipe.y chỉ được trải từ [0, +chiều dọc màn hình/2] vì chỉ vuốt lên, cần chuẩn hóa về [0,1] dùng InverseLerp
+        // Giá trị của swipe.y có thể vượt quá giới hạn nếu vuốt ra ngoài màn hình --> Cần dùng clamp
+        // 50px = vuốt ngắn nhất → 0, 500px = vuốt dài nhất → 1
+        float normalizedY = Mathf.InverseLerp(0, Screen.height / 2, swipe.y);
+
+        // Clamp01 giới hạn giá trị normalizedY trong khoảng [0,1] 
+        // Trường hợp vuốt quá ngắn (<50px) → kết quả âm (10px --> normalizedY = -0.088), clamp về 0
+        // Trường hợp vuốt quá dài (>500px) → kết quả >1, clamp về 1
+        normalizedY = Mathf.Clamp01(normalizedY);
+
+        // mappedAngle = a+(b−a)*t : (nội suy tuyến tinh)
+        // trong đó t là giá trị chuẩn hóa 0-1, b là max, a là min
+        //  (VD t = 0 --> mapped = min (nếu vuốt ngắn thì ném góc a))
+        //normalizedY càng lớn --> càng gần minAngleX --> Phi tiêu càng ngửa lên cao (vì dựa theo rotation.x)
+        float mappedAngleX = Mathf.Lerp(maxAngleX, minAngleX, normalizedY);
+
 
         // Quay rotation của phi tiêu.
-        Quaternion deviationRotation = Quaternion.Euler(randomAngleX, randomAngleY, 0);
+        Quaternion deviationRotation = Quaternion.Euler(mappedAngleX, mappedAngleY, 0);
         Vector3 shootDirection = deviationRotation * Vector3.forward;
+
+        // Reset trạng thái vật lý
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+        rb.useGravity = true;
 
         // Bắn theo hướng đã xoay
         rb.AddForce(shootDirection * flyForce, ForceMode.Impulse);
 
         //Đổi state
         ChangeState(DartState.Flying);
+
+        // Debug
+        Debug.Log($"Shoot! swipe=({swipe.x:F1},{swipe.y:F1}) -> angleX={mappedAngleX:F1}, angleY={mappedAngleY:F1}");
     }
 
     private void OnTriggerEnter(Collider other)

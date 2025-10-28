@@ -92,6 +92,41 @@ public class RoundStartHandler
         }
     }
 
+    //{ "response":"response_throw_swipe",
+    //  "status":"SUCCESS","data":{
+    //      "matchId":1,"round":1,
+    //      "playerId":2,
+    //      "playerName":"hoang",
+    //      "swipeX":0.0,
+    //      "swipeY":0.0,
+    //      "timeout":false
+    //   }
+    //}
+    public void HandleThrowSwipe(SimpleJSON.JSONNode jsonData)
+    {
+        string status = jsonData["status"].Value;
+        switch (status)
+        {
+            case "SUCCESS":
+                //Thực hiện hoạt ảnh và logic ném trên cả hai máy
+                float swipeX = jsonData["data"]["swipeX"];
+                float swipeY = jsonData["data"]["swipeY"];
+                Vector2 swipe = new Vector2(swipeX, swipeY);
+
+                PlayerController.Instance.ShootDart(swipe);
+
+                //Set lực ném trên màn hình
+                //RoundController.Instance.SetOpponentForceReceived(force);
+                break;
+            case "FAIL":
+
+                break;
+            default:
+                Debug.Log("Lỗi status của dữ liệu:" + jsonData);
+                break;
+        }
+    }
+
     //{ "response":"response_throw_score","status":"SUCCESS","data":{ "matchId":4,"round":1,"playerId":2,"playerName":"hoang","score":34,"totalScoreP1":34,"totalScoreP2":0,"timeout":false} }
     public void HandleRoundScore(SimpleJSON.JSONNode jsonData)
     {

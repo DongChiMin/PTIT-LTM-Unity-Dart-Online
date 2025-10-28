@@ -11,10 +11,9 @@ public class PlayerController : Singleton<PlayerController>
     //Biến kiểm tra mình có phải là người ném ko
     bool isThrower;
 
-    //Touch Controll
-    private Vector2 startTouchPosition;
-    private Vector2 endTouchPosition;
-    private Vector2 swipeVector;
+    //Touch Control
+    private Vector2 startPos;
+    private Vector2 endPos;
     void Start()
     {
         dartManager = DartManager.Instance;
@@ -27,67 +26,40 @@ public class PlayerController : Singleton<PlayerController>
     {
         if (isThrower && currentDart.GetCurrentState() != DartState.Hit)
         {
-            if (Input.GetMouseButtonDown(0))
-            {
-                //Ví dụ: Gửi lực ném (về sau sẽ truyền lực ném vào hàm shoot)
-                RoundController.Instance.SendForce(3.4f);
-
-                ShootDart(3.4f);
-            }
-            //if (currentDart != null) {
-            //    GetSwipeVector();
-
-            //    if (currentDart.GetCurrentState() == DartState.Ready && Input.GetMouseButtonDown(0))
-            //    {
-            //        //currentDart.Shoot();
-            //    }
-            //}
+            SwipeCheck();
         }
     }
 
-    public void ShootDart(float force)
+    private void SwipeCheck()
     {
-        currentDart.Shoot(force);
-    }
-
-    private void GetSwipeVector()
-    {
-        //if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
-        //{
-        //    startTouchPosition = Input.GetTouch(0).position;
-        //}
-        //if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
-        //{
-        //    endTouchPosition = Input.GetTouch(0).position;
-
-        //    swipeVector = endTouchPosition - startTouchPosition;
-        //    Debug.DrawLine(Camera.main.ScreenToWorldPoint(startTouchPosition),
-        //       Camera.main.ScreenToWorldPoint(endTouchPosition),
-        //       Color.green, 2f);
-        //    Debug.Log(swipeVector);
-        //}
-
         if (Input.GetMouseButtonDown(0))
         {
-            startTouchPosition = Input.mousePosition;
+            startPos = Input.mousePosition;
         }
-        else if (Input.GetMouseButtonUp(0))
+
+        if (Input.GetMouseButtonUp(0))
         {
-            endTouchPosition = Input.mousePosition;
-            
-            //Xử lý input người chơi: chuẩn hóa input: Vuốt dọc hết màn hình thì y có giá trị = 2
-            swipeVector = endTouchPosition - startTouchPosition;
-            Vector2 normalizedSwipe = new Vector2(swipeVector.x / Screen.width, swipeVector.y / Screen.height) * 2f;
+            endPos = Input.mousePosition;
+            Vector2 swipe = endPos - startPos;
 
-            Debug.Log("Swipe Normalized: " + normalizedSwipe);
-            Debug.Log("Normalized Magnitude: " + normalizedSwipe.magnitude);
-            Debug.Log("Normalized Direction: " + normalizedSwipe.normalized);
+            // Vuốt từ trên xuống => bỏ qua
+            if (swipe.y <= 0f)
+            {
+                Debug.Log("Vuốt xuống - không ném");
+                return;
+            }
 
-            Vector3 worldStart = Camera.main.ScreenToWorldPoint(new Vector3(startTouchPosition.x, startTouchPosition.y, 10f));
-            Vector3 worldEnd = Camera.main.ScreenToWorldPoint(new Vector3(endTouchPosition.x, endTouchPosition.y, 10f));
-            Debug.DrawLine(worldStart, worldEnd, Color.green, 10f);
+            //Gửi tin nhắn cho server
+            RoundController.Instance.SendSwipe(swipe);
 
+            //Thực hiện logic ném dựa theo vuốt sẽ được xử lý khi nhận được tin nhắn từ server
+            //ShootDart(swipe);
         }
+    }
+
+    public void ShootDart(Vector2 swipe)
+    {
+        currentDart.Shoot(swipe);
     }
 
     public void SetDart(Dart dart)

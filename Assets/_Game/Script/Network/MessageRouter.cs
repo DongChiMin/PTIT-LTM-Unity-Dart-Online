@@ -48,6 +48,10 @@ public class MessageRouter : Singleton<MessageRouter>
                     //{ "response":"response_throw_force","status":"SUCCESS","data":{ "matchId":1,"round":1,"playerId":2,"playerName":"hoang","force":0.0,"timeout":false} }
                     roundStartHandler.HandleThrowForce(json);
                     break;
+                case "response_throw_swipe":
+                    //{ "response":"response_throw_swipe","status":"SUCCESS","data":{ "matchId":1,"round":1,"playerId":2,"playerName":"hoang","swipeX":0.0,"swipeY":0.0,"timeout":false} }
+                    roundStartHandler.HandleThrowSwipe(json);
+                    break;
                 case "response_throw_score":
                     //P1 la người mời 
                     //{ "response":"response_throw_score","status":"SUCCESS","data":{ "matchId":4,"round":1,"playerId":2,"playerName":"hoang","score":34,"totalScoreP1":34,"totalScoreP2":0,"timeout":false} }
