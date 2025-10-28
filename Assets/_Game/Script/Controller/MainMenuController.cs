@@ -26,7 +26,12 @@ public class MainMenuController : Singleton<MainMenuController>
 
     public void onClickRanking()
     {
+        //Gửi lệnh lấy danh sách người choi online
+        GetRankingPacket packet = new GetRankingPacket();
+        NetworkStream stream = ServerConnection.Instance.GetStream();
+        PacketSender.SendPacket(packet, stream);
 
+        CameraManager.Instance.SetCamera(CameraType.ranking);
     }
 
     public void onClickExit()

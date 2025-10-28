@@ -22,4 +22,9 @@ public class RegisterController : MonoBehaviour
         UIManager.Instance.ShowOnly(UIPaneltype.login);
         LoginController.Instance.ResetInput();
     }
+
+    public void OnClickTryAgain()
+    {
+        UIManager.Instance.ShowOnly(UIPaneltype.register);
+    }
 }

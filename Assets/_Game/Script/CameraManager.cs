@@ -8,7 +8,8 @@ public enum CameraType
     login,
     mainMenu,
     onlineListMenu,
-    gameplay
+    gameplay,
+    ranking
 }
 
 public class CameraManager : Singleton<CameraManager>
@@ -21,6 +22,7 @@ public class CameraManager : Singleton<CameraManager>
     [SerializeField] CinemachineVirtualCamera mainMenuCamera;
     [SerializeField] CinemachineVirtualCamera onlineListMenuCamera;
     [SerializeField] CinemachineVirtualCamera gamePlayCamera;
+    [SerializeField] CinemachineVirtualCamera rankingCamera;
 
     private CinemachineVirtualCamera currentCVCamera;
 
@@ -32,6 +34,7 @@ public class CameraManager : Singleton<CameraManager>
     [SerializeField] private CinemachineFramingTransposer mainMenuTransposer;
     [SerializeField] private CinemachineFramingTransposer onlineListMenuTransposer;
     [SerializeField] private CinemachineFramingTransposer gamePlayTransposer;
+    [SerializeField] private CinemachineFramingTransposer rankingTransposer;
 
     private Dictionary<CinemachineVirtualCamera, CinemachineFramingTransposer> cameraMap = new Dictionary<CinemachineVirtualCamera, CinemachineFramingTransposer>();
     void Start()
@@ -40,11 +43,13 @@ public class CameraManager : Singleton<CameraManager>
         mainMenuTransposer = mainMenuCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
         onlineListMenuTransposer = onlineListMenuCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
         gamePlayTransposer = gamePlayCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
+        rankingTransposer = rankingCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
 
         cameraMap.Add(loginCamera, loginTransposer);
         cameraMap.Add(mainMenuCamera, mainMenuTransposer);
         cameraMap.Add(onlineListMenuCamera, onlineListMenuTransposer);
         cameraMap.Add(gamePlayCamera, gamePlayTransposer);
+        cameraMap.Add(rankingCamera, rankingTransposer);
 
         SetCamera(CameraType.login);
     }
@@ -77,6 +82,8 @@ public class CameraManager : Singleton<CameraManager>
                 targetCam = onlineListMenuCamera; break;
             case CameraType.gameplay:
                 targetCam = gamePlayCamera; break;
+            case CameraType.ranking:
+                targetCam = rankingCamera; break;
             default:
                 Debug.Log("Không có camera hợp lệ");
                 return;

@@ -9,14 +9,13 @@ public class MessageRouter : Singleton<MessageRouter>
     private InviteResponseHandler inviteResponseHandler = new InviteResponseHandler();
     private RoundStartHandler roundStartHandler = new RoundStartHandler();
     private MatchEndHandler matchEndHandler = new MatchEndHandler();
+    private RankingHandler rankingHandler = new RankingHandler();
+    private RegisterHandler registerHandler = new RegisterHandler();
+
     public void Route(string msg)
     {
         // Tách chuỗi theo dấu xuống dòng (\n) để lấy các JSON riêng biệt
         var jsonStrings = msg.Trim().Split('\n');
-        if(jsonStrings.Length > 1)
-        {
-            Debug.Log("TÁCH ĐƯỢC RỒI");
-        }
         // Lặp qua từng chuỗi JSON
         foreach (var jsonString in jsonStrings)
         {
@@ -29,7 +28,7 @@ public class MessageRouter : Singleton<MessageRouter>
                     loginHandler.Handle(json);
                     break;
                 case "response_register":
-
+                    registerHandler.Handle(json);
                     break;
 
                 case "response_online_users":
@@ -70,6 +69,9 @@ public class MessageRouter : Singleton<MessageRouter>
                 case "response_history":
                     break;
                 case "response_ranking":
+                    rankingHandler.Handle(json);
+                    //{"response":"response_ranking","status":"SUCCESS","data":{"ranking":[{"rank":1,"playerName":"Nguyet","totalScore":100},{"rank":2,"playerName":"Player1","totalScore":80},{"rank":3,"playerName":"Player2","totalScore":60}],"currentUserRank":1}}
+                    
                     break;
                 case "response_player_detail":
                     break;
