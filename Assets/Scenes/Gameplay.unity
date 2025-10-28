@@ -9456,8 +9456,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  moveSpeed: 5
-  offset: {x: 0, y: 0, z: 2}
+  moveSpeed: 10
+  offset: {x: 0, y: 0, z: 0}
 --- !u!4 &406569217
 Transform:
   m_ObjectHideFlags: 0
@@ -60879,6 +60879,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fd7d0479bd33924ea52d53aeec7acdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentGameState: 0
+  GameplayObject: {fileID: 0}
 --- !u!1001 &2088774378
 PrefabInstance:
   m_ObjectHideFlags: 0
