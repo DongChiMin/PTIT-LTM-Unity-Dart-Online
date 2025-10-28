@@ -76,24 +76,24 @@ public class Dart : MonoBehaviour
         // -------------------------
         // ÁNH XẠ GÓC NGANG (Y)
         // -------------------------
-        // Vuốt trái/phải -> thay đổi angleY
+        // Vuốt trái/phải -> thay đổi angleY (angleY là trái phải)
         // dir.x = -1 (trái) -> angleY = minAngleY
         // dir.x =  1 (phải) -> angleY = maxAngleY
-        float normalizedX = Mathf.InverseLerp(-Screen.width, Screen.width, swipe.x);
+        float normalizedX = Mathf.InverseLerp(-Screen.width/2, Screen.width/2, swipe.x);
         normalizedX = Mathf.Clamp01(normalizedX);
         float mappedAngleY = Mathf.Lerp(minAngleY, maxAngleY, normalizedX);
 
         // -------------------------
         // ÁNH XẠ GÓC DỌC (X)
         // -------------------------
-        // Vuốt từ dưới lên -> swipe.y càng lớn -> angleX càng gần maxAngleX
+        // Vuốt từ dưới lên -> swipe.y càng lớn -> angleX càng gần maxAngleX (angleX là lên xuống)
 
 
         // InverserLerp = (value - a ) / (b-a)
-        // Giá trị của swipe.y sẽ trải từ [0, +chiều dọc màn hình] vì chỉ vuốt lên, cần chuẩn hóa về [0,1] dùng InverseLerp
+        // Giá trị của swipe.y chỉ được trải từ [0, +chiều dọc màn hình/2] vì chỉ vuốt lên, cần chuẩn hóa về [0,1] dùng InverseLerp
         // Giá trị của swipe.y có thể vượt quá giới hạn nếu vuốt ra ngoài màn hình --> Cần dùng clamp
         // 50px = vuốt ngắn nhất → 0, 500px = vuốt dài nhất → 1
-        float normalizedY = Mathf.InverseLerp(0, Screen.height, swipe.y);
+        float normalizedY = Mathf.InverseLerp(0, Screen.height/2, swipe.y);
 
         // Clamp01 giới hạn giá trị normalizedY trong khoảng [0,1] 
         // Trường hợp vuốt quá ngắn (<50px) → kết quả âm (10px --> normalizedY = -0.088), clamp về 0
@@ -103,8 +103,8 @@ public class Dart : MonoBehaviour
         // mappedAngle = a+(b−a)*t : (nội suy tuyến tinh)
         // trong đó t là giá trị chuẩn hóa 0-1, b là max, a là min
         //  (VD t = 0 --> mapped = min (nếu vuốt ngắn thì ném góc a))
-        float mappedAngleX = Mathf.Lerp(minAngleX, maxAngleX, normalizedY);
-
+        //normalizedY càng lớn --> càng gần minAngleX --> Phi tiêu càng ngửa lên cao (vì dựa theo rotation.x)
+        float mappedAngleX = Mathf.Lerp(maxAngleX, minAngleX, normalizedY);
 
 
         // Quay rotation của phi tiêu.
