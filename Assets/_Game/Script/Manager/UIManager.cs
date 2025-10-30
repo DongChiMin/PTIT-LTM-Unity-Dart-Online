@@ -79,4 +79,18 @@ public class UIManager : Singleton<UIManager>
             panel.SetActive(false);
         }
     }
+
+    public bool IsShown(UIPaneltype panelType)
+    {
+        if (panels.TryGetValue(panelType, out GameObject panel))
+        {
+            return panel.activeSelf; // Trả về true nếu panel đang bật
+        }
+        else
+        {
+            Debug.LogWarning($"Không tìm thấy panel: {panelType}");
+            return false;
+        }
+    }
+
 }

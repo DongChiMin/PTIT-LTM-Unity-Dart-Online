@@ -31,6 +31,7 @@ public class InviteResponseHandler
                 }
                 else
                 {
+                    UIManager.Instance.Hide(UIPaneltype.inviteTimeout);
                     UIManager.Instance.Show(UIPaneltype.inviteFailed);
                     PlayerOnlineListController.Instance.SetInviteFailedText(playerName + " declined!");
                 }

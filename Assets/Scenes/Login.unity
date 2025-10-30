@@ -23388,7 +23388,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 564e7754c22b59f4b8b95a9d8f682213, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreTextPrefab: {fileID: 0}
+  scoreTextPrefab: {fileID: -3758096587349103269, guid: 9491036832c60804589bd53839c54f6f,
+    type: 3}
 --- !u!1 &599735044
 GameObject:
   m_ObjectHideFlags: 0
@@ -52564,7 +52565,7 @@ MonoBehaviour:
   mainMenuCamera: {fileID: 1249566948}
   onlineListMenuCamera: {fileID: 1601022653}
   gamePlayCamera: {fileID: 307838680}
-  rankingCamera: {fileID: 0}
+  rankingCamera: {fileID: 199107096}
   currentTransposer: {fileID: 0}
   loginTransposer: {fileID: 0}
   mainMenuTransposer: {fileID: 0}

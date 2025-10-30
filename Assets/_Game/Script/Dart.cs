@@ -129,24 +129,30 @@ public class Dart : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        string multiplier = "";
         if (other.gameObject.layer == LayerMask.NameToLayer("Multiplier"))
-        {
+        {         
             switch (other.tag)
             {
                 case "InnerBullEye":
                     Debug.Log("50 diem");
+                    multiplier = "plus;50";
                     break;
                 case "OuterBullEye":
                     Debug.Log("25 diem");
+                    multiplier = "plus;25";
                     break;
                 case "Treble3x":
                     Debug.Log("Nhan 3 so diem");
+                    multiplier = "mul;3";
                     break;
                 case "Treble2x":
                     Debug.Log("Nhan 2 so diem");
+                    multiplier = "mul;2";
                     break;
                 case "Single":
                     Debug.Log("Giu nguyen diem");
+                    multiplier = "mul;1";
                     break;
             }
         }
@@ -164,7 +170,7 @@ public class Dart : MonoBehaviour
         if (Physics.Raycast(from, direction, out hit, 6f, LayerMask.GetMask("Score")))
         {
             Debug.Log("Raycast hit at: " + hit.point);
-            CalculateScore(hit.point, other.gameObject.transform);
+            CalculateScore(hit.point, other.gameObject.transform, multiplier);
         }
         else
         {
@@ -215,7 +221,7 @@ public class Dart : MonoBehaviour
         3, 17, 2, 15, 10
     };
 
-    void CalculateScore(Vector3 hitPoint, Transform dartBoard)
+    void CalculateScore(Vector3 hitPoint, Transform dartBoard, String multiplier)
     {
         Vector3 center = dartBoard.position;
         Vector3 dir = hitPoint - center;
@@ -235,7 +241,22 @@ public class Dart : MonoBehaviour
         int sectorIndex = Mathf.FloorToInt(angle / sectorAngle);
         int score = sectorScores[sectorIndex]; // Mảng điểm của từng lát pizza
 
-        Debug.Log($"Hit sector {sectorIndex}, Score: {score}");
+        //Nhân hệ số
+        string prefix = multiplier.Split(';')[0];
+        if(prefix == "plus")
+        {
+            score += int.Parse(multiplier.Split(';')[1]);
+        }
+        else if(prefix == "mul")
+        {
+            score *= int.Parse(multiplier.Split(';')[1]);
+        }
+        else
+        {
+            Debug.Log("Sai prefix");
+            return;
+        }
+            Debug.Log($"Hit sector {sectorIndex}, Score: {score}");
 
         ScoreTextController.Instance.TrigerText(transform.position + new Vector3(0f, 0f, -3f), score.ToString());
 
