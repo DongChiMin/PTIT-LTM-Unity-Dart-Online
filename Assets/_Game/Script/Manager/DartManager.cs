@@ -81,8 +81,8 @@ public class DartManager : Singleton<DartManager>
         currentDart = darts.Pop();
         currentDart.gameObject.SetActive(true);
 
-        //CameraManager.Instance.SetTarget(currentDart.gameObject);
-        //playerController.SetDart(currentDart);
+        CameraManager.Instance.SetCameraFollow(currentDart.gameObject);
+        playerController.SetDart(currentDart);
 
         isHit = false;
 
