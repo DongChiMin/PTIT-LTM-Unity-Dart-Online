@@ -129,7 +129,8 @@ public class Dart : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        string multiplier = "";
+        string multiplier = "normal;0";
+        Debug.Log(other.gameObject);
         if (other.gameObject.layer == LayerMask.NameToLayer("Multiplier"))
         {         
             switch (other.tag)
@@ -221,7 +222,7 @@ public class Dart : MonoBehaviour
         3, 17, 2, 15, 10
     };
 
-    void CalculateScore(Vector3 hitPoint, Transform dartBoard, String multiplier)
+    void CalculateScore(Vector3 hitPoint, Transform dartBoard, string multiplier)
     {
         Vector3 center = dartBoard.position;
         Vector3 dir = hitPoint - center;
@@ -242,6 +243,7 @@ public class Dart : MonoBehaviour
         int score = sectorScores[sectorIndex]; // Mảng điểm của từng lát pizza
 
         //Nhân hệ số
+        Debug.Log(multiplier);
         string prefix = multiplier.Split(';')[0];
         if(prefix == "plus")
         {
@@ -250,6 +252,10 @@ public class Dart : MonoBehaviour
         else if(prefix == "mul")
         {
             score *= int.Parse(multiplier.Split(';')[1]);
+        }
+        else if(prefix == "normal")
+        {
+
         }
         else
         {
