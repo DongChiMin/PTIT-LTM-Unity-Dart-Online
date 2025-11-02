@@ -50,7 +50,7 @@ public class RoundStartHandler
                     RoundController.Instance.SetFields(true, false);
                 }
                 RoundController.Instance.SetRoundText(matchId, firstTurnName, round, timeOut);
-
+                RoundController.Instance.SetDartboardRotateSpeed(0f);
                 break;
             case "FAIL":
                 
@@ -138,6 +138,25 @@ public class RoundStartHandler
                 int yourScore = jsonData["data"]["totalScoreP1"];
                 int opponentScore = jsonData["data"]["totalScoreP2"];
                 RoundController.Instance.SetScore(yourScore, opponentScore);
+                break;
+            case "FAIL":
+
+                break;
+            default:
+                Debug.Log("Lỗi status của dữ liệu:" + jsonData);
+                break;
+        }
+    }
+
+    //{ "response":"response_rotate_dartboard","status":"SUCCESS","data":{ "rotateSpeed":10.2} }
+    public void HandleRotateDartboard(SimpleJSON.JSONNode jsonData)
+    {
+        string status = jsonData["status"].Value;
+        switch (status)
+        {
+            case "SUCCESS":
+                float rotateSpeed = jsonData["data"]["rotateSpeed"];
+                RoundController.Instance.SetDartboardRotateSpeed(rotateSpeed);
                 break;
             case "FAIL":
 

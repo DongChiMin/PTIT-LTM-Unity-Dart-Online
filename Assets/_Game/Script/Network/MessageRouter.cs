@@ -77,6 +77,10 @@ public class MessageRouter : Singleton<MessageRouter>
                     //{"response":"response_ranking","status":"SUCCESS","data":{"ranking":[{"rank":1,"playerName":"Nguyet","totalScore":100},{"rank":2,"playerName":"Player1","totalScore":80},{"rank":3,"playerName":"Player2","totalScore":60}],"currentUserRank":1}}
                     
                     break;
+                case "response_rotate_dartboard":
+                    roundStartHandler.HandleRotateDartboard(json);
+                    break;
+
                 case "response_player_detail":
                     break;
 

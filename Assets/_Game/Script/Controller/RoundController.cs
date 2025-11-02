@@ -21,6 +21,7 @@ public class RoundController : Singleton<RoundController>
     [SerializeField] TextMeshProUGUI opponentScore;
 
     [SerializeField] GameObject opponentThrowingUI;
+    [SerializeField] Dartboard dartboard;
 
     //Xử lý thời gian
     [SerializeField] TextMeshProUGUI timeOutText;
@@ -131,6 +132,15 @@ public class RoundController : Singleton<RoundController>
         SetFields(false, false);
     }
 
+    public void OnClickRotateDartboard()
+    {
+        RotateDartboardPacket packet = new RotateDartboardPacket(matchId, 10f);
+        NetworkStream stream = ServerConnection.Instance.GetStream();
+        PacketSender.SendPacket(packet, stream);
+
+        //sau khi gửi điểm xong thì chờ server phản hồi mới xoay bia
+    }
+
     public void OnClickSendForce()
     {
         ThrowForcePacket packet = new ThrowForcePacket(matchId, float.Parse(forceInput.text));
@@ -176,5 +186,10 @@ public class RoundController : Singleton<RoundController>
         {
             this.playerNameTurn.color = Color.white;
         }
+    }
+
+    public void SetDartboardRotateSpeed(float speed)
+    {
+        dartboard.SetRotationSpeed(speed);
     }
 }
