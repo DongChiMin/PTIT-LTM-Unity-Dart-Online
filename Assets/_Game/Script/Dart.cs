@@ -227,6 +227,7 @@ public class Dart : MonoBehaviour
 
     void CalculateScore(Vector3 hitPoint, Transform dartBoard, string multiplier)
     {
+        //1. TÍNH VÒNG ĐIỂM
         //Kiểm tra nếu dartboard đã xoay thì cộng thêm góc xoay
         Dartboard dartboard = RoundController.Instance.GetDartboard();
         float rotateAngle = dartboard.transform.eulerAngles.z;
@@ -250,27 +251,43 @@ public class Dart : MonoBehaviour
         int sectorIndex = Mathf.FloorToInt(angle / sectorAngle);
         int score = sectorScores[sectorIndex]; // Mảng điểm của từng lát pizza
 
-        //Nhân hệ số
-        Debug.Log(multiplier);
-        string prefix = multiplier.Split(';')[0];
-        if(prefix == "plus")
+        //2. HỆ SỐ ĐIỂM (các vùng thưởng điểm)
+        float distance = dir.magnitude;
+        if (distance <= 0.27f)
         {
-            score += int.Parse(multiplier.Split(';')[1]);
+            // Bullseye
+            score = 50;
         }
-        else if(prefix == "mul")
+        else if (distance <= 0.6f)
         {
-            score *= int.Parse(multiplier.Split(';')[1]);
+            // Outer bull
+            score = 25;
         }
-        else if(prefix == "normal")
+        else if (distance <= 3.55f)
         {
-
+            // Vòng đơn đầu tiên
+            // giữ nguyên
+        }
+        else if (distance <= 3.9f)
+        {
+            // Vòng triple
+            score *= 3;
+        }
+        else if (distance <= 5.85f)
+        {
+            // Vòng đơn ngoài
+            // giữ nguyên
+        }
+        else if (distance <= 6.3f)
+        {
+            // Vòng double
+            score *= 2;
         }
         else
         {
-            Debug.Log("Sai prefix");
-            return;
+            // Ngoài bảng -> không tính điểm
+            score = 0;
         }
-            Debug.Log($"Hit sector {sectorIndex}, Score: {score}");
 
         ScoreTextController.Instance.TrigerText(transform.position + new Vector3(0f, 0f, -3f), score.ToString());
 
