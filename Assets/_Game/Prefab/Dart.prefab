@@ -98,10 +98,10 @@ MonoBehaviour:
   flyForce: 30
   gravityForce: 30
   rotationSpeed: 50
-  maxAngleX: -2
-  minAngleX: -35
-  maxAngleY: 12
-  minAngleY: -12
+  maxAngleX: -10
+  minAngleX: -30
+  maxAngleY: 8
+  minAngleY: -8
 --- !u!1001 &6290051309553596223
 PrefabInstance:
   m_ObjectHideFlags: 0
