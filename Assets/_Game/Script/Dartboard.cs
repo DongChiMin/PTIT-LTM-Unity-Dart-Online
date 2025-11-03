@@ -19,6 +19,6 @@ public class Dartboard : MonoBehaviour
 
     public void SetRotationSpeed(float speed)
     {
-
+        this.speed = speed;
     }
 }

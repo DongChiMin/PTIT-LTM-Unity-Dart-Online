@@ -19930,6 +19930,7 @@ MonoBehaviour:
   opponentScore: {fileID: 231749509}
   opponentThrowingUI: {fileID: 2024361908}
   dartboard: {fileID: 315410557}
+  rotateButton: {fileID: 893105571}
   timeOutText: {fileID: 2128622457}
 --- !u!1 &283803307
 GameObject:
@@ -21142,7 +21143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ace9fd4a1b1b39446afcc70cb9c58eda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serverIpAddress: localhost
+  serverIpAddress: 26.3.244.86
   serverPort: 1234
 --- !u!4 &390615798
 Transform:
@@ -43449,7 +43450,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 278827943}
         m_TargetAssemblyTypeName: RoundController, Assembly-CSharp
-        m_MethodName: OnClickEnd
+        m_MethodName: OnClickRotateDartboard
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -78903,7 +78904,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1901204116
 RectTransform:
   m_ObjectHideFlags: 0
