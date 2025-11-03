@@ -15,6 +15,8 @@ public class RegisterController : MonoBehaviour
         RegisterPacket packet = new RegisterPacket(usernameInput.text, passwordInput.text, playerName.text);
         NetworkStream stream = ServerConnection.Instance.GetStream();
         PacketSender.SendPacket(packet, stream);
+
+        UIManager.Instance.ShowOnly(UIPaneltype.loading);
     }
 
     public void OnClickBack()

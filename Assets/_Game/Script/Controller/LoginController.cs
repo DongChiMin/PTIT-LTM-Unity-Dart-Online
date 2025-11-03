@@ -14,6 +14,8 @@ public class LoginController : Singleton<LoginController>
         LoginPacket login = new LoginPacket(usernameInput.text, passwordInput.text);
         NetworkStream stream = ServerConnection.Instance.GetStream();
         PacketSender.SendPacket(login, stream);
+
+        UIManager.Instance.ShowOnly(UIPaneltype.loading);
     }
 
     public void OnClickTryAgain()

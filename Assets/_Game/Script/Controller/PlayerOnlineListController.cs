@@ -15,6 +15,38 @@ public class PlayerOnlineListController : Singleton<PlayerOnlineListController>
 
     [SerializeField] SliderTimerUI sliderTimer;
     private int inviteFromId = -1;
+
+    bool isfetching = false;
+
+    private void Start()
+    {
+        isfetching = false;
+    }
+
+    private void Update()
+    {
+        if (UIManager.Instance.IsShown(UIPaneltype.playerOnlineList))
+        {
+            if (isfetching)
+            {
+                isfetching = false;
+                StartCoroutine(UpdatePlayerOnlineList(2));
+            }
+            
+        }
+    }
+
+    IEnumerator UpdatePlayerOnlineList(float time)
+    {
+        //Gửi lệnh lấy danh sách người choi online
+        GetOnlineUsersPacket packet = new GetOnlineUsersPacket();
+        NetworkStream stream = ServerConnection.Instance.GetStream();
+        PacketSender.SendPacket(packet, stream);
+
+        yield return new WaitForSeconds(time);
+        isfetching = true;
+
+    }
     public void onClickExit()
     {
         CameraManager.Instance.SetCamera(CameraType.mainMenu);
@@ -100,5 +132,10 @@ public class PlayerOnlineListController : Singleton<PlayerOnlineListController>
     public void SetInviteFromId (int newId)
     {
         inviteFromId = newId;
+    }
+
+    public void SetIsFetching(bool isFetching)
+    {
+        this.isfetching = isFetching;
     }
 }

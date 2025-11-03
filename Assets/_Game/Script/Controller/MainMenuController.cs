@@ -16,14 +16,16 @@ public class MainMenuController : Singleton<MainMenuController>
     
     public void onClickPlay() {
         CameraManager.Instance.SetCamera(CameraType.onlineListMenu);
-        UIManager.Instance.ShowOnly(UIPaneltype.playerOnlineList);
 
-        //Gửi lệnh lấy danh sách người choi online
+        ////Gửi lệnh lấy danh sách người choi online
         GetOnlineUsersPacket packet = new GetOnlineUsersPacket();
         NetworkStream stream = ServerConnection.Instance.GetStream();
         PacketSender.SendPacket(packet, stream);
 
-        UIManager.Instance.ShowOnly(UIPaneltype.loading);
+        //True để cập nhật danh sách liên tục mỗi 2 giây
+        PlayerOnlineListController.Instance.SetIsFetching(true);
+
+        UIManager.Instance.ShowOnly(UIPaneltype.playerOnlineList);
     }
 
     public void onClickRanking()
