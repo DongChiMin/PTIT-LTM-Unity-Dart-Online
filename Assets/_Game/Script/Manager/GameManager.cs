@@ -48,6 +48,8 @@ public class GameManager : Singleton<GameManager>
                 //đổi UI
                 UIManager.Instance.ShowOnly(UIPaneltype.gameplayUI);
 
+                RoundController.Instance.GetDartboard().transform.rotation = Quaternion.identity;
+
                 DartManager.Instance.OnInit();
                 CameraManager.Instance.SetCamera(CameraType.gameplay);
                 break;

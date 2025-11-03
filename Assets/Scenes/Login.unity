@@ -17219,7 +17219,7 @@ MonoBehaviour:
   greenDartPrefab: {fileID: 374604688316599923, guid: 6cf3fd05caa6a88489579f7246a77983,
     type: 3}
   dartPool: {fileID: 0}
-  timeToDestroyHitDart: 5
+  timeToDestroyHitDart: 2
   playerController: {fileID: 1722092384}
 --- !u!1 &132494421
 GameObject:
