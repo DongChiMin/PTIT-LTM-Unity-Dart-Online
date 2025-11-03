@@ -198,4 +198,9 @@ public class RoundController : Singleton<RoundController>
     {
         rotateButton.gameObject.SetActive(boolean);
     }
+
+    public Dartboard GetDartboard()
+    {
+        return dartboard;
+    }
 }

@@ -33,8 +33,10 @@ public class RoundStartHandler
 
                     RoundController.Instance.SetOpponentThrowingUI(true);
 
+                    RoundController.Instance.SetRotateButton(true);
+
                     //Phiên bản playingDemo
-                    RoundController.Instance.SetFields(false, false);
+                    RoundController.Instance.SetFields(false, false);                
                 }
                 else
                 {
@@ -45,6 +47,8 @@ public class RoundStartHandler
                     dart.SetIsThrower(true);
 
                     RoundController.Instance.SetOpponentThrowingUI(false);
+
+                    RoundController.Instance.SetRotateButton(false);
 
                     //Phiên bản playingDemo
                     RoundController.Instance.SetFields(true, false);

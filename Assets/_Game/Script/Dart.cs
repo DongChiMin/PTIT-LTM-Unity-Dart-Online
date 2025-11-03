@@ -227,10 +227,15 @@ public class Dart : MonoBehaviour
 
     void CalculateScore(Vector3 hitPoint, Transform dartBoard, string multiplier)
     {
+        //Kiểm tra nếu dartboard đã xoay thì cộng thêm góc xoay
+        Dartboard dartboard = RoundController.Instance.GetDartboard();
+        float rotateAngle = dartboard.transform.eulerAngles.z;
+        Debug.Log(rotateAngle);
+
         Vector3 center = dartBoard.position;
         Vector3 dir = hitPoint - center;
 
-        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - rotateAngle;
         if (angle < 0) angle += 360;
         Debug.Log("Angle:" + angle);
 
