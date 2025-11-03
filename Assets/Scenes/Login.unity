@@ -21143,7 +21143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ace9fd4a1b1b39446afcc70cb9c58eda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serverIpAddress: 26.3.244.86
+  serverIpAddress: 26.119.107.12
   serverPort: 1234
 --- !u!4 &390615798
 Transform:
@@ -43483,6 +43483,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: RoundController, Assembly-CSharp
         m_MethodName: OnClickRotateDartboard
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 893105569}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

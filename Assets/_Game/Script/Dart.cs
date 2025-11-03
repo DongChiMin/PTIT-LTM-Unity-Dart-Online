@@ -237,7 +237,10 @@ public class Dart : MonoBehaviour
         Vector3 dir = hitPoint - center;
 
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - rotateAngle;
-        if (angle < 0) angle += 360;
+        while (angle < 0)
+        {
+            angle += 360;
+        }
         Debug.Log("Angle:" + angle);
 
         //Hiện tại trong logic 0 độ --> 18 dộ là ô điểm thứ nhất. Nhưng thực tế -9 độ --> 9 độ mới là ô điểm thứ nhất
