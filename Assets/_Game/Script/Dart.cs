@@ -21,16 +21,16 @@ public class Dart : MonoBehaviour
     [SerializeField] float rotationSpeed;
 
     [Header("Do lech khi nem phi tieu")]
-    [Range(-50f, -10f)]
+    [Range(-100f, 100f)]
     public float maxAngleX;
 
-    [Range(-50f, -10f)]
+    [Range(-100f, 100f)]
     public float minAngleX;
 
-    [Range(-20f, 20f)]
+    [Range(-100f, 100f)]
     public float maxAngleY;
 
-    [Range(-20f, 20f)]
+    [Range(-100f, 100f)]
     public float minAngleY;
 
     Rigidbody rb;
