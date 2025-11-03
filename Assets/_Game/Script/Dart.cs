@@ -242,8 +242,7 @@ public class Dart : MonoBehaviour
 
         //Hiện tại trong logic 0 độ --> 18 dộ là ô điểm thứ nhất. Nhưng thực tế -9 độ --> 9 độ mới là ô điểm thứ nhất
         //Giải pháp: offset cộng 9 độ để từ -9 đến 9 là ô điểm thứ nhất
-        angle += 9f;
-        if (angle > 360) angle -= 360;
+        angle = (angle + 9f) % 360f;
 
         int numberOfSectors = 20;
         float sectorAngle = 360f / numberOfSectors;
