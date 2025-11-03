@@ -255,32 +255,32 @@ public class Dart : MonoBehaviour
 
         //2. HỆ SỐ ĐIỂM (các vùng thưởng điểm)
         float distance = dir.magnitude;
-        if (distance <= 0.27f * dartBoard.transform.localScale.x)
+        if (distance <= 0.9f * dartBoard.transform.localScale.x)
         {
             // Bullseye
             score = 50;
         }
-        else if (distance <= 0.6f * dartBoard.transform.localScale.x)
+        else if (distance <= 2f * dartBoard.transform.localScale.x)
         {
             // Outer bull
             score = 25;
         }
-        else if (distance <= 3.55f * dartBoard.transform.localScale.x)
+        else if (distance <= 11.8f * dartBoard.transform.localScale.x)
         {
             // Vòng đơn đầu tiên
             // giữ nguyên
         }
-        else if (distance <= 3.9f * dartBoard.transform.localScale.x)
+        else if (distance <= 13f * dartBoard.transform.localScale.x)
         {
             // Vòng triple
             score *= 3;
         }
-        else if (distance <= 5.85f * dartBoard.transform.localScale.x)
+        else if (distance <= 19.53f * dartBoard.transform.localScale.x)
         {
             // Vòng đơn ngoài
             // giữ nguyên
         }
-        else if (distance <= 6.3f * dartBoard.transform.localScale.x)
+        else if (distance <= 21 * dartBoard.transform.localScale.x)
         {
             // Vòng double
             score *= 2;

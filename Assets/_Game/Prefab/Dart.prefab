@@ -99,7 +99,7 @@ MonoBehaviour:
   gravityForce: 30
   rotationSpeed: 50
   maxAngleX: -2
-  minAngleX: 35
+  minAngleX: -35
   maxAngleY: 12
   minAngleY: -12
 --- !u!1001 &6290051309553596223
