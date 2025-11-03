@@ -80,7 +80,7 @@ public class Dart : MonoBehaviour
         // Vuốt trái/phải -> thay đổi angleY (angleY là trái phải)
         // dir.x = -1 (trái) -> angleY = minAngleY
         // dir.x =  1 (phải) -> angleY = maxAngleY
-        float normalizedX = Mathf.InverseLerp(-Screen.width / 2, Screen.width / 2, swipe.x);
+        float normalizedX = Mathf.InverseLerp(-Screen.width / 4, Screen.width / 4, swipe.x);
         normalizedX = Mathf.Clamp01(normalizedX);
         float mappedAngleY = Mathf.Lerp(minAngleY, maxAngleY, normalizedX);
 
@@ -178,7 +178,7 @@ public class Dart : MonoBehaviour
         }
         else
         {
-            ScoreTextController.Instance.TrigerText(transform.position + new Vector3(0f, 0f, -3f), "0");
+            ScoreTextController.Instance.TrigerText(transform.position + new Vector3(0f, 0f, -1f), "0");
             if (isThrower) StartCoroutine(SendScoreDelay(2f, 0));
         }
     }
@@ -292,7 +292,7 @@ public class Dart : MonoBehaviour
             score = 0;
         }
 
-        ScoreTextController.Instance.TrigerText(transform.position + new Vector3(0f, 0f, -3f), score.ToString());
+        ScoreTextController.Instance.TrigerText(transform.position + new Vector3(0f, 0f, -1f), score.ToString());
 
         //Gửi điểm về server
         if(isThrower) StartCoroutine(SendScoreDelay(2f, score));

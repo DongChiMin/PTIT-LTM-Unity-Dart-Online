@@ -46,4 +46,22 @@ public class InviteResponseHandler
                 break;
         }
     }
+
+    public void HandleCancelInvite(SimpleJSON.JSONNode jsonData)
+    {
+        string status = jsonData["status"].Value;
+        switch (status)
+        {
+            case "SUCCESS":
+                UIManager.Instance.ShowOnly(UIPaneltype.playerOnlineList);
+                break;
+            case "FAIL":
+
+                break;
+            default:
+                Debug.Log("Lỗi status của dữ liệu:" + jsonData);
+                break;
+        }
+    }
+
 }

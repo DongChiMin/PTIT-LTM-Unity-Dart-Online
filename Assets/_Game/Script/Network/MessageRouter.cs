@@ -1,8 +1,14 @@
-﻿using System;
+﻿using SimpleJSON;
+using System;
+using System.Linq;
+using System.Text;
 using UnityEngine;
-using SimpleJSON;
 public class MessageRouter : Singleton<MessageRouter>
 {
+    private StringBuilder incompleteJsonBuilder = new StringBuilder(); // Bộ đệm lưu dữ liệu nhận được
+    private int openBraces = 0;  // Đếm số dấu mở {
+    private int closeBraces = 0; // Đếm số dấu đóng }
+
     private LoginHandler loginHandler = new LoginHandler();
     private OnlineUsersHandler onlineUsersHandler = new OnlineUsersHandler();
     private InviteHandler inviteHandler = new InviteHandler();
@@ -15,14 +21,45 @@ public class MessageRouter : Singleton<MessageRouter>
 
     public void Route(string msg)
     {
-        // Tách chuỗi theo dấu xuống dòng (\n) để lấy các JSON riêng biệt
-        var jsonStrings = msg.Trim().Split('\n');
-        // Lặp qua từng chuỗi JSON
-        foreach (var jsonString in jsonStrings)
-        {
-            var json = JSON.Parse(jsonString.Trim());
-            string response = json["response"];
+        // Thêm dữ liệu nhận được vào bộ đệm
+        incompleteJsonBuilder.Append(msg);
 
+        // Đếm số lượng dấu { và }
+        openBraces += msg.Count(c => c == '{');
+        closeBraces += msg.Count(c => c == '}');
+
+        // Nếu dấu { và } đã cân bằng, có thể đã nhận được JSON đầy đủ
+        if (openBraces == closeBraces)
+        {
+            // Parse dữ liệu
+            try
+            {
+                var json = JSON.Parse(incompleteJsonBuilder.ToString());
+                string response = json["response"];
+                Debug.Log(json);
+
+                // Gọi hàm xử lý cho từng loại response
+                HandleJsonResponse(response, json);
+            }
+            catch (Exception e)
+            {
+                Debug.LogError("Lỗi khi parse JSON: " + e.Message);
+            }
+
+            // Dọn bộ đệm sau khi đã xử lý xong
+            incompleteJsonBuilder.Clear();
+            openBraces = 0;
+            closeBraces = 0;
+        }
+        else
+        {
+            // Tiếp tục nhận thêm dữ liệu nếu chưa đủ
+            return;
+        }
+    }
+
+    public void HandleJsonResponse(string response, JSONNode json)
+    {
             switch (response)
             {
                 case "response_login":
@@ -82,14 +119,17 @@ public class MessageRouter : Singleton<MessageRouter>
                 case "response_rotate_dartboard":
                     roundStartHandler.HandleRotateDartboard(json);
                     break;
+                case "response_cancel_invite":
+                    inviteResponseHandler.HandleCancelInvite(json);
+                    break;
 
                 case "response_player_detail":
                     break;
 
                 default:
-                    Debug.LogWarning("Không biết xử lý: " + msg);
+                    Debug.LogWarning("Không biết xử lý: " + json.ToString());
                     break;
             }
         }
     }
-}
+

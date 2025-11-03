@@ -15,6 +15,7 @@ public class PlayerOnlineListController : Singleton<PlayerOnlineListController>
 
     [SerializeField] SliderTimerUI sliderTimer;
     private int inviteFromId = -1;
+    private int inviteToId = -1;
 
     bool isfetching = false;
 
@@ -60,10 +61,22 @@ public class PlayerOnlineListController : Singleton<PlayerOnlineListController>
         NetworkStream stream = ServerConnection.Instance.GetStream();
         PacketSender.SendPacket(packet, stream);
 
+        inviteToId = playerId;
+
         //Hiển thị UI
         UIManager.Instance.Show(UIPaneltype.waitingInvite);
         SetWaitingInviteText("Waiting " + playerName + " to accept...");
         sliderTimer.StartCountdown(10);
+    }
+
+    public void onClickCancelInvite()
+    {
+        //Gửi lệnh cancel invite về server
+        CancelInvitePacket packet = new CancelInvitePacket(inviteToId);
+        NetworkStream stream = ServerConnection.Instance.GetStream();
+        PacketSender.SendPacket(packet, stream);
+
+        UIManager.Instance.ShowOnly(UIPaneltype.playerOnlineList);
     }
 
     public void onClickAccept()
