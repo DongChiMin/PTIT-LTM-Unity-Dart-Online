@@ -19,7 +19,9 @@ public enum UIPaneltype
     playerDetail,
     ranking,
     gameplayUI,
-    registerFailed
+    registerFailed,
+    matchHistory,
+    loading
 }
 
 public class UIManager : Singleton<UIManager>

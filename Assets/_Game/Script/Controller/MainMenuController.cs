@@ -22,6 +22,8 @@ public class MainMenuController : Singleton<MainMenuController>
         GetOnlineUsersPacket packet = new GetOnlineUsersPacket();
         NetworkStream stream = ServerConnection.Instance.GetStream();
         PacketSender.SendPacket(packet, stream);
+
+        UIManager.Instance.ShowOnly(UIPaneltype.loading);
     }
 
     public void onClickRanking()
@@ -32,6 +34,17 @@ public class MainMenuController : Singleton<MainMenuController>
         PacketSender.SendPacket(packet, stream);
 
         CameraManager.Instance.SetCamera(CameraType.ranking);
+        UIManager.Instance.ShowOnly(UIPaneltype.loading);
+    }
+
+    public void OnClickMatchHistory()
+    {
+        //Gửi lệnh lấy lịch sử đấu
+        GetMatchHistoryPacket packet = new GetMatchHistoryPacket();
+        NetworkStream stream = ServerConnection.Instance.GetStream();
+        PacketSender.SendPacket(packet, stream);
+
+        UIManager.Instance.ShowOnly(UIPaneltype.loading);
     }
 
     public void onClickExit()

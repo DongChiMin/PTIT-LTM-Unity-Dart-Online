@@ -11,6 +11,7 @@ public class MessageRouter : Singleton<MessageRouter>
     private MatchEndHandler matchEndHandler = new MatchEndHandler();
     private RankingHandler rankingHandler = new RankingHandler();
     private RegisterHandler registerHandler = new RegisterHandler();
+    private MatchHistoryHandler matchHistoryHandler = new MatchHistoryHandler();
 
     public void Route(string msg)
     {
@@ -70,7 +71,8 @@ public class MessageRouter : Singleton<MessageRouter>
                     break;
                 case "response_exit_match":
                     break;
-                case "response_history":
+                case "response_match_history":
+                    matchHistoryHandler.Handle(json);
                     break;
                 case "response_ranking":
                     rankingHandler.Handle(json);
