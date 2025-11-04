@@ -64,9 +64,13 @@ public class RoundController : Singleton<RoundController>
             {
                 timeOutText.color = Color.red;
             }
+            else
+            {
+                timeOutText.color = Color.black;
+            }
 
-            // Chờ một giây trước khi cập nhật lại
-            yield return new WaitForSeconds(1f);
+                // Chờ một giây trước khi cập nhật lại
+                yield return new WaitForSeconds(1f);
         }
 
         // Khi hết thời gian, cập nhật UI 

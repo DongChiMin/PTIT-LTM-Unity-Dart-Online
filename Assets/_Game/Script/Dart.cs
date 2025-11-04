@@ -163,6 +163,7 @@ public class Dart : MonoBehaviour
 
         //Dừng xoay bia
         RoundController.Instance.SetDartboardRotateSpeed(0);
+        RoundController.Instance.SetRotateButton(false);
 
         //Kiểm tra va chạm
         Vector3 from = transform.position + transform.forward * 3f;

@@ -109,9 +109,11 @@ public class RoundStartHandler
     public void HandleThrowSwipe(SimpleJSON.JSONNode jsonData)
     {
         string status = jsonData["status"].Value;
+        bool timeout = jsonData["data"]["timeout"];
         switch (status)
         {
             case "SUCCESS":
+                if (timeout) return;
                 //Thực hiện hoạt ảnh và logic ném trên cả hai máy
                 float swipeX = jsonData["data"]["swipeX"];
                 float swipeY = jsonData["data"]["swipeY"];
