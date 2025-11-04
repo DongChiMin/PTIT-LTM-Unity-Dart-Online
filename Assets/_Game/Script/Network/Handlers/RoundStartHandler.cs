@@ -137,10 +137,13 @@ public class RoundStartHandler
     public void HandleRoundScore(SimpleJSON.JSONNode jsonData)
     {
         string status = jsonData["status"].Value;
+        bool timeout = jsonData["data"]["timeout"];
         switch (status)
         {
 
             case "SUCCESS":
+                Debug.Log(timeout);
+                if(timeout) return;
                 int yourScore = jsonData["data"]["totalScoreP1"];
                 int opponentScore = jsonData["data"]["totalScoreP2"];
                 RoundController.Instance.SetScore(yourScore, opponentScore);
