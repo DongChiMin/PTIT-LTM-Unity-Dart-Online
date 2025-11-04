@@ -21143,7 +21143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ace9fd4a1b1b39446afcc70cb9c58eda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serverIpAddress: 26.119.107.12
+  serverIpAddress: 26.3.244.86
   serverPort: 1234
 --- !u!4 &390615798
 Transform:
@@ -52166,16 +52166,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1844902146}
+      objectReference: {fileID: 671419539}
     - target: {fileID: 4757897395103345251, guid: 4eac95e4bd2e83d45b8a24be9fd65f9c,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: onClickPlay
+      value: onClickCancelInvite
       objectReference: {fileID: 0}
     - target: {fileID: 4757897395103345251, guid: 4eac95e4bd2e83d45b8a24be9fd65f9c,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: MainMenuController, Assembly-CSharp
+      value: PlayerOnlineListController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5469154187192197773, guid: 4eac95e4bd2e83d45b8a24be9fd65f9c,
         type: 3}
