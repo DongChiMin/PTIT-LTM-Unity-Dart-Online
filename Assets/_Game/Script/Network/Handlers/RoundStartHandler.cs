@@ -113,7 +113,11 @@ public class RoundStartHandler
         switch (status)
         {
             case "SUCCESS":
-                if (timeout) return;
+                if (timeout)
+                {
+                    DartManager.Instance.GetCurrentDart().gameObject.SetActive(false);
+                    return;
+                }
                 //Thực hiện hoạt ảnh và logic ném trên cả hai máy
                 float swipeX = jsonData["data"]["swipeX"];
                 float swipeY = jsonData["data"]["swipeY"];
