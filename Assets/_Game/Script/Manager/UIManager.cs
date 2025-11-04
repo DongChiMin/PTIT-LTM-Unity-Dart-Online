@@ -21,7 +21,8 @@ public enum UIPaneltype
     gameplayUI,
     registerFailed,
     matchHistory,
-    loading
+    loading,
+    invalidRegister
 }
 
 public class UIManager : Singleton<UIManager>

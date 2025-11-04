@@ -12,11 +12,18 @@ public class RegisterController : MonoBehaviour
 
     public void OnClickRegister()
     {
-        RegisterPacket packet = new RegisterPacket(usernameInput.text, passwordInput.text, playerName.text);
-        NetworkStream stream = ServerConnection.Instance.GetStream();
-        PacketSender.SendPacket(packet, stream);
+        if(usernameInput.text == "" || passwordInput.text == "" || playerName.text == "")
+        {
+            UIManager.Instance.Show(UIPaneltype.invalidRegister);
+        }
+        else
+        {
+            RegisterPacket packet = new RegisterPacket(usernameInput.text, passwordInput.text, playerName.text);
+            NetworkStream stream = ServerConnection.Instance.GetStream();
+            PacketSender.SendPacket(packet, stream);
 
-        UIManager.Instance.ShowOnly(UIPaneltype.loading);
+            UIManager.Instance.ShowOnly(UIPaneltype.loading);
+        } 
     }
 
     public void OnClickBack()
