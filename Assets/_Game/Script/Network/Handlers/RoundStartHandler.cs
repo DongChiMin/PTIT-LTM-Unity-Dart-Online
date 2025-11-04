@@ -118,6 +118,9 @@ public class RoundStartHandler
                     DartManager.Instance.GetCurrentDart().gameObject.SetActive(false);
                     return;
                 }
+                //Tắt nút xoay bia
+                RoundController.Instance.SetRotateButton(false);
+
                 //Thực hiện hoạt ảnh và logic ném trên cả hai máy
                 float swipeX = jsonData["data"]["swipeX"];
                 float swipeY = jsonData["data"]["swipeY"];
