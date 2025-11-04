@@ -41,6 +41,10 @@ public class SliderTimerUI : MonoBehaviour
                 UIManager.Instance.Hide(UIPaneltype.waitingInvite);
                 UIManager.Instance.Show(UIPaneltype.inviteTimeout);
             }
+            else if (UIManager.Instance.IsShown(UIPaneltype.waitingAccept))
+            {
+                UIManager.Instance.ShowOnly(UIPaneltype.playerOnlineList);
+            }
         }
     }
 }

@@ -18,6 +18,7 @@ public class InviteHandler
             case "SUCCESS":
                 //Chuyển sang UI chờ accept
                 UIManager.Instance.ShowOnly(UIPaneltype.waitingAccept);
+                PlayerOnlineListController.Instance.GetSilderTimerInvitee().StartCountdown(10);
 
                 //Set int của người mời chơi
                 int fromPlayerId = jsonData["data"]["fromUserId"];

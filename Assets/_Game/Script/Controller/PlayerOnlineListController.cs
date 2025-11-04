@@ -13,7 +13,9 @@ public class PlayerOnlineListController : Singleton<PlayerOnlineListController>
     [SerializeField] TextMeshProUGUI waitingAcceptText;
     [SerializeField] TextMeshProUGUI inviteFailedText;
 
-    [SerializeField] SliderTimerUI sliderTimer;
+    [SerializeField] SliderTimerUI sliderTimerInviter;
+    [SerializeField] SliderTimerUI sliderTimerInvitee;
+
     private int inviteFromId = -1;
     private int inviteToId = -1;
 
@@ -66,7 +68,7 @@ public class PlayerOnlineListController : Singleton<PlayerOnlineListController>
         //Hiển thị UI
         UIManager.Instance.Show(UIPaneltype.waitingInvite);
         SetWaitingInviteText("Waiting " + playerName + " to accept...");
-        sliderTimer.StartCountdown(10);
+        sliderTimerInviter.StartCountdown(10);
     }
 
     public void onClickCancelInvite()
@@ -150,5 +152,10 @@ public class PlayerOnlineListController : Singleton<PlayerOnlineListController>
     public void SetIsFetching(bool isFetching)
     {
         this.isfetching = isFetching;
+    }
+
+    public SliderTimerUI GetSilderTimerInvitee()
+    {
+        return sliderTimerInvitee;
     }
 }

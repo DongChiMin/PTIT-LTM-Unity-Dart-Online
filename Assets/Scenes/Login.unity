@@ -32701,7 +32701,8 @@ MonoBehaviour:
   waitingInviteText: {fileID: 666149223}
   waitingAcceptText: {fileID: 667957803}
   inviteFailedText: {fileID: 604101604}
-  sliderTimer: {fileID: 1652221561}
+  sliderTimerInviter: {fileID: 0}
+  sliderTimerInvitee: {fileID: 0}
 --- !u!4 &673124756 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ab350fe332834c84087fe76b040f34a1,
@@ -85670,7 +85671,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Score
+  m_text: y'Score
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 54a91696812570c4880a824debaf3eb8, type: 2}
   m_sharedMaterial: {fileID: -7196030655860980388, guid: 54a91696812570c4880a824debaf3eb8,
