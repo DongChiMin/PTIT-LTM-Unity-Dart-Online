@@ -17952,7 +17952,7 @@ RectTransform:
   m_Father: {fileID: 1006275991}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -24151,7 +24151,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &625435246
 RectTransform:
   m_ObjectHideFlags: 0
@@ -32701,8 +32701,8 @@ MonoBehaviour:
   waitingInviteText: {fileID: 666149223}
   waitingAcceptText: {fileID: 667957803}
   inviteFailedText: {fileID: 604101604}
-  sliderTimerInviter: {fileID: 0}
-  sliderTimerInvitee: {fileID: 0}
+  sliderTimerInviter: {fileID: 1652221561}
+  sliderTimerInvitee: {fileID: 1278773121}
 --- !u!4 &673124756 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ab350fe332834c84087fe76b040f34a1,
@@ -33651,7 +33651,7 @@ RectTransform:
   m_Father: {fileID: 273674753}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -55108,7 +55108,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1170377024
 RectTransform:
   m_ObjectHideFlags: 0
