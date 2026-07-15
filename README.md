@@ -1,5 +1,5 @@
 # Dart Online - Multiplayer 3D Game
-Server side: https://github.com/NguyenThHien/LTM.git
+Server side: https://github.com/DongChiMin/PTIT-LTM-Server-Dart-Online.git
 ## 📌 Project Overview
 A real-time multiplayer game developed in Unity (Client) and C# .NET (Server) designed to demonstrate custom network architecture, multi-threaded connection handling, and synchronous state management between clients.
 
